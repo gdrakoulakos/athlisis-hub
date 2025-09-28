@@ -1,26 +1,41 @@
 .upcomingsSection {
   width: 100%;
-  margin: 10px;
+  overflow: scroll;
+  height: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 8px;
 }
 
 .upcomingsContainer {
   width: 90%;
-  border: solid 1px rebeccapurple;
+  height: 100px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 10px;
+  border: 1px solid #d3d6db;
+  border-radius: 8px;
+  padding: 10px;
 }
 
-.image {
-  width: 20%;
-  border: solid 1px red;
+.imageContainer {
   margin-right: 10px;
 }
 
+.image {
+  border-radius: 50%;
+}
+
 .infoContainer {
-    width: 80%;
-    border: solid 1px blue;
+  width: 100%;
+}
+
+.more {
+  font-size: 13px;
+  color: #be3144;
+  background-color: transparent;
+  border: none;
+  margin: 0;
 }
