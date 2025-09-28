@@ -1,0 +1,26 @@
+.upcomingsSection {
+  width: 100%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upcomingsContainer {
+  width: 90%;
+  border: solid 1px rebeccapurple;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.image {
+  width: 20%;
+  border: solid 1px red;
+  margin-right: 10px;
+}
+
+.infoContainer {
+    width: 80%;
+    border: solid 1px blue;
+}
