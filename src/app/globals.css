@@ -19,8 +19,7 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
+  font-family: "Futura", "Century Gothic", "Gill Sans";
   -moz-osx-font-smoothing: grayscale;
 }
 
