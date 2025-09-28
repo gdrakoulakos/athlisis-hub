@@ -1,16 +1,47 @@
+"use client";
+import { useState } from "react";
 import styles from "./Header.module.css";
+import Image from "next/image";
 
 export default function Header() {
   const headerOptions = ["Home", "Booking", "Groups", "Events"];
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleMenuClicked = () => {
+    setMenuOpen((prev) => !prev);
+    console.log("menuOpen", menuOpen);
+  };
 
   return (
     <div className={styles.headerSection}>
-      <div className={styles.logo}>Logo</div>
-      <div className={styles.optionsContainer}>
+      <figure className={styles.logo}>
+        <Image
+          src="/images/logo-ath2.png"
+          alt="Athlisis Hub Logo"
+          width={70}
+          height={60}
+        />
+      </figure>
+
+      <div className={styles.burger}>
+        <figure className={styles.humbergerMenu}>
+          <Image
+            src="/images/burger-menu.svg"
+            alt="humberger menu"
+            width={60}
+            height={60}
+            onClick={handleMenuClicked}
+          />
+        </figure>
+      </div>
+
+      <div
+        className={`${styles.optionsContainer} ${menuOpen ? styles.open : ""}`}
+      >
         {headerOptions.map((option, index) => (
-          <div key={index} className={styles.option}>
+          <h1 key={index} className={styles.option}>
             {option}
-          </div>
+          </h1>
         ))}
       </div>
     </div>
