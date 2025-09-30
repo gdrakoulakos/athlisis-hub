@@ -4,7 +4,7 @@ import styles from "./Header.module.css";
 import Image from "next/image";
 
 export default function Header() {
-  const headerOptions = ["Home", "Booking", "Groups", "Events"];
+  const headerOptions = ["Home", "Booking", "Groups", "Events", "Calendar"];
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleMenuClicked = () => {
@@ -18,8 +18,8 @@ export default function Header() {
         <Image
           src="/images/logo-ath2.png"
           alt="Athlisis Hub Logo"
-          width={70}
-          height={60}
+          width={50}
+          height={50}
         />
       </figure>
 
@@ -28,8 +28,8 @@ export default function Header() {
           <Image
             src="/images/burger-menu.svg"
             alt="humberger menu"
-            width={60}
-            height={60}
+            width={40}
+            height={40}
             onClick={handleMenuClicked}
           />
         </figure>
