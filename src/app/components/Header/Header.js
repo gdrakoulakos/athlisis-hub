@@ -9,7 +9,6 @@ export default function Header() {
 
   const handleMenuClicked = () => {
     setMenuOpen((prev) => !prev);
-    console.log("menuOpen", menuOpen);
   };
 
   return (
@@ -27,7 +26,7 @@ export default function Header() {
         <figure className={styles.humbergerMenu}>
           <Image
             src="/images/burger-menu.svg"
-            alt="humberger menu"
+            alt="Humburger Menu"
             width={40}
             height={40}
             onClick={handleMenuClicked}

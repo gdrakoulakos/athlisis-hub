@@ -1,11 +1,12 @@
 import styles from "./page.module.css";
-import Upcomings from "./components/Upcomings/Upcomings";
+import RequestsOverview from "./components/RequestsOverview/RequestsOverview";
 import ButtonReserveCourt from "./components/ButtonReserveCourt/ButtonReserveCourt";
 
 export default function Home() {
   return (
     <div className={styles.homePageSection}>
-      <Upcomings />
+      <RequestsOverview title={"Notifications"} status={"Pending"} />
+      <RequestsOverview title={"Upcomings"} status={"Booked"} />
       <ButtonReserveCourt />
     </div>
   );

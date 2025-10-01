@@ -16,7 +16,7 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  margin: 20px;
+  margin: 10px;
 }
 
 .reserveButton:hover {
