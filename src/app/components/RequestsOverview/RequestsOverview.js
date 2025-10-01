@@ -4,6 +4,7 @@ import bookings from "@/mockdata/bookings.json";
 
 export default function RequestsOverview({ title, status }) {
   const booked = bookings.filter((booking) => booking.status === status);
+  console.log("booked", booked);
 
   return (
     <>
