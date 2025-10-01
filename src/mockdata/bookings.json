@@ -7,7 +7,7 @@
     "type": "Friendly",
     "persons": 4,
     "length": 2,
-    "status": "Booked"
+    "status": "Acknowledged"
   },
   {
     "id": 2,
@@ -27,7 +27,7 @@
     "type": "Tournament",
     "persons": 6,
     "length": 4,
-    "status": "Booked"
+    "status": "Acknowledged"
   },
   {
     "id": 4,
@@ -47,7 +47,7 @@
     "type": "Party",
     "persons": 14,
     "length": 4,
-    "status": "Booked"
+    "status": "Acknowledged"
   },
   {
     "id": 6,
@@ -57,7 +57,7 @@
     "type": "Friendly",
     "persons": 5,
     "length": 1,
-    "status": "Booked"
+    "status": "Acknowledged"
   },
   {
     "id": 7,
@@ -67,7 +67,7 @@
     "type": "Tournament",
     "persons": 2,
     "length": 1,
-    "status": "Booked"
+    "status": "Acknowledged"
   },
   {
     "id": 8,
@@ -77,7 +77,7 @@
     "type": "Friendly",
     "persons": 3,
     "length": 2,
-    "status": "Booked"
+    "status": "Acknowledged"
   },
   {
     "id": 9,
@@ -87,7 +87,7 @@
     "type": "Other",
     "persons": 8,
     "length": 2,
-    "status": "Booked"
+    "status": "Acknowledged"
   },
   {
     "id": 10,

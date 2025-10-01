@@ -1,17 +1,9 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #303841;
-    --foreground: #ededed;
-  }
-}
-
 html,
 body {
+  margin: 0;
+  font-family: "Futura", "Century Gothic", "Gill Sans";
+  background: #f9f9f9;
+
   figure {
     margin: 0;
     padding: 0;
@@ -23,21 +15,8 @@ body {
   }
 
   h2 {
-    color: #be3144;
+    color: #fd705c;
     margin: 0;
     font-weight: 100;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: "Futura", "Century Gothic", "Gill Sans";
-  -moz-osx-font-smoothing: grayscale;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
   }
 }

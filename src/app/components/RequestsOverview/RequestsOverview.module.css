@@ -1,5 +1,5 @@
 .requestsOverviewBlock {
-  width: 100%;
+  width: 95%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,8 +10,8 @@
   position: relative;
   width: 100%;
   height: 200px;
-  border-radius: 8px;
-  background: #3d4853;
+  border-radius: 20px;
+  background: #ffdfdb;
   overflow: hidden;
 }
 
@@ -40,8 +40,8 @@
   pointer-events: none;
   background: linear-gradient(
     to bottom,
-    rgba(48, 56, 65, 0),
-    rgba(48, 56, 65, 1)
+    rgba(255, 223, 219, 0),
+    rgba(255, 223, 219, 1)
   );
   border-radius: 0 0 8px 8px;
   z-index: 1;
@@ -54,7 +54,7 @@
   flex-direction: row;
   align-items: center;
   margin-bottom: 10px;
-  border-bottom: 1px solid #d3d6db;
+  border-bottom: 1px solid #fd705c;
   padding: 5px;
 }
 
@@ -76,9 +76,15 @@
   width: 100%;
 }
 
-.requestsOverviewItemButton {
-  font-size: 13px;
-  color: #be3144;
+.requestsOverviewItemType {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fd705c;
+}
+
+.requestsOverviewMore {
+  font-size: 14px;
+  color: #fd705c;
   background-color: transparent;
   border: none;
   margin: 0;

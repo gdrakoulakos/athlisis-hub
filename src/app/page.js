@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className={styles.homePageSection}>
       <RequestsOverview title={"Notifications"} status={"Pending"} />
-      <RequestsOverview title={"Upcomings"} status={"Booked"} />
+      <RequestsOverview title={"Upcomings"} status={"Acknowledged"} />
       <ButtonReserveCourt />
     </div>
   );

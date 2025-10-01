@@ -5,10 +5,17 @@
   align-items: center;
   position: relative;
   z-index: 2;
+  background-color: #fd705c;
+  border-radius: 0 0 30px 30px;
+  padding: 10px 20px 10px 20px;
+  margin-bottom: 10px;
 }
 
 .logo {
-  margin: 10px;
+  cursor: pointer;
+}
+
+.humbergerMenu {
   cursor: pointer;
 }
 

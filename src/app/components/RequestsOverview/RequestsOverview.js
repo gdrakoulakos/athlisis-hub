@@ -37,7 +37,7 @@ export default function RequestsOverview({ title, status }) {
                   <div className={styles.requestsOverviewItemType}>
                     {booking.type}
                   </div>
-                  <button className={styles.requestsOverviewItemButton}>
+                  <button className={styles.requestsOverviewMore}>
                     More ...
                   </button>
                 </div>
