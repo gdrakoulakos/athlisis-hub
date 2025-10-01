@@ -3,12 +3,13 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  z-index: 2;
+  z-index: 10;
   background-color: #fd705c;
   border-radius: 0 0 30px 30px;
   padding: 10px 20px 10px 20px;
   margin-bottom: 10px;
+  position: sticky;
+  top: 0;
 }
 
 .logo {
@@ -28,17 +29,17 @@
   position: absolute;
   top: 100%;
   z-index: 1;
-  background-color: #000000e6;
+  backdrop-filter: blur(20px);
   border-radius: 10px;
   opacity: 0;
-  transform: translateY(-10px);
+  transform: translateX(0px);
   pointer-events: none;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .optionsContainer.open {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(-10px);
   pointer-events: auto;
 }
 
