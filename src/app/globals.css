@@ -17,9 +17,15 @@ body {
     padding: 0;
   }
 
+  h1 {
+    font-weight: 100;
+    font-size: 30px;
+  }
+
   h2 {
     color: #be3144;
     margin: 0;
+    font-weight: 100;
   }
 }
 
