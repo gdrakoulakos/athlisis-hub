@@ -1,10 +1,8 @@
 import Image from "next/image";
 import styles from "./RequestsOverview.module.css";
-import bookings from "@/mockdata/bookings.json";
 
-export default function RequestsOverview({ title, status }) {
+export default function RequestsOverview({ title, status, bookings }) {
   const booked = bookings.filter((booking) => booking.status === status);
-  console.log("booked", booked);
 
   return (
     <>
