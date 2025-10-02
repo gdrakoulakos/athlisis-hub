@@ -21,7 +21,7 @@
   margin: 10px;
 }
 
-.optionsContainer {
+.optionsSection {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -37,13 +37,18 @@
   transition: opacity 0.3s ease, right 0.3s ease;
 }
 
-.optionsContainer.open {
+.optionsSection.open {
   opacity: 1;
   pointer-events: auto;
 }
 
-.option {
+.optionsContainer {
   margin: 10px;
   cursor: pointer;
+}
+
+.option {
+  text-decoration: none;
+  color: #fd705c;
   text-shadow: #ffffff 0px 0px 2px;
 }

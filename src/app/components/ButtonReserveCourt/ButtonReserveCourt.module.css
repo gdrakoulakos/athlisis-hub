@@ -16,6 +16,7 @@
   -webkit-user-select: none;
   touch-action: manipulation;
   margin: 10px;
+  text-decoration: none;
 }
 
 .reserveButton:hover {
