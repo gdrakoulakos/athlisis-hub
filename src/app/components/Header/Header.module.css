@@ -16,6 +16,15 @@
   margin: 10px;
 }
 
+.headerTitle {
+  text-decoration: none;
+}
+
+.headerTitle h1 {
+  color: #ffffff;
+  font-weight: 100;
+}
+
 .humbergerMenu {
   cursor: pointer;
   margin: 10px;

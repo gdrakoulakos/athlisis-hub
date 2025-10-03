@@ -30,7 +30,9 @@ export default function Header() {
           />
         </figure>
       </Link>
-
+      <Link href="/" className={styles.headerTitle}>
+        <h1>AthlisisHub</h1>
+      </Link>
       <div className={styles.burger}>
         <figure className={styles.humbergerMenu}>
           <Image
