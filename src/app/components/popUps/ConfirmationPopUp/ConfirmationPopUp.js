@@ -1,6 +1,10 @@
 import styles from "./ConfirmationPopUp.module.css";
 
-export default function ConfirmationPopUp({ bookingData, setIsPopUpVisible }) {
+export default function ConfirmationPopUp({
+  bookingData,
+  setIsPopUpVisible,
+  addBooking,
+}) {
   return (
     <div className={styles.confirmationPopUpContainer}>
       <h2>Please confirm you booking</h2>
@@ -13,7 +17,9 @@ export default function ConfirmationPopUp({ bookingData, setIsPopUpVisible }) {
       <p>Duration: {bookingData.duration} hours</p>
       <p>Court: Court {bookingData.court}</p>
       <div className={styles.buttonContainer}>
-        <button className={styles.confirmButton}>Confirm</button>
+        <button className={styles.confirmButton} onClick={addBooking}>
+          Confirm
+        </button>
         <button
           className={styles.cancelButton}
           onClick={() => setIsPopUpVisible(false)}

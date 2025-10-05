@@ -8,8 +8,8 @@ import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/Confirmati
 export default function Booking() {
   const [bookingData, setBookingData] = useState({
     date: new Date(),
-    duration: null,
-    court: null,
+    duration: 0,
+    court: 0,
     name: "",
     phone: "",
     persons: 4,
@@ -97,6 +97,29 @@ export default function Booking() {
     e.preventDefault();
     setIsPopUpVisible(true);
   };
+
+  const addBooking = async () => {
+    const newBooking = {
+      date: bookingData.formattedDate,
+      time: bookingData.time,
+      name: bookingData.name,
+      type: bookingData.type,
+      persons: bookingData.persons,
+      status: bookingData.status,
+      duration: bookingData.duration,
+      phone: bookingData.phone,
+      court: bookingData.court,
+    };
+    const res = await fetch("/api/bookings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newBooking),
+    });
+    const data = await res.json();
+    console.log(data.message);
+  };
+
+  console.log(bookingData);
 
   return (
     <div className={styles.bookingBlock}>
@@ -227,6 +250,7 @@ export default function Booking() {
         <ConfirmationPopUp
           bookingData={bookingData}
           setIsPopUpVisible={setIsPopUpVisible}
+          addBooking={addBooking}
         />
       )}
     </div>
