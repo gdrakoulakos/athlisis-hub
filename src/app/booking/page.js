@@ -13,11 +13,11 @@ export default function Booking() {
     name: "",
     phone: "",
     persons: 4,
-    bookingType: "Friendly",
+    type: "Friendly",
     time: "",
+    status: "Pending",
   });
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
-
   const bookingTypeOptions = ["Friendly", "Tournament", "Party", "Other"];
 
   const timeOptions = [
@@ -131,10 +131,10 @@ export default function Booking() {
           onChange={(e) =>
             setBookingData((prev) => ({
               ...prev,
-              bookingType: e.target.value,
+              type: e.target.value,
             }))
           }
-          value={bookingData.bookingType}
+          value={bookingData.type}
         >
           {bookingTypeOptions.map((option, index) => (
             <option key={index} value={option}>
@@ -160,6 +160,7 @@ export default function Booking() {
             setBookingData((prev) => ({
               ...prev,
               date: date,
+              formattedDate: date.toISOString().split("T")[0],
             }))
           }
           value={bookingData.date}
@@ -195,6 +196,7 @@ export default function Booking() {
           name="time"
           id="time-select"
           onChange={handleTimeValueChange}
+          value={bookingData.duration}
         >
           {durationOptions.map((option, index) => (
             <option key={index} value={option.value}>
@@ -210,6 +212,7 @@ export default function Booking() {
           name="court"
           id="court-select"
           onChange={handleCourtValueChange}
+          value={bookingData.court}
         >
           {courtOptions.map((option, index) => (
             <option key={index} value={option.value}>
