@@ -2,6 +2,7 @@
 import Calendar from "react-calendar";
 import styles from "./page.module.css";
 import "react-calendar/dist/Calendar.css";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/ConfirmationPopUp";
 import SuccessfullyPopUp from "../components/popUps/SuccessfullyPopUp/SuccessfullyPopUp";
@@ -24,6 +25,7 @@ export default function Booking() {
     message: "",
     successful: false,
   });
+  const router = useRouter();
 
   const timeOptions = [
     { label: "Select time", value: 0 },
@@ -121,10 +123,10 @@ export default function Booking() {
       body: JSON.stringify(newBooking),
     });
     const data = await res.json();
-    console.log(data.message);
     setBookingResult({ message: data.message, successful: true });
     setTimeout(() => {
       setBookingResult({ message: "", successful: false });
+      router.push("/");
     }, 3000);
   };
 

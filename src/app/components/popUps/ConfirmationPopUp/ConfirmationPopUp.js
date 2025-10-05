@@ -11,7 +11,7 @@ export default function ConfirmationPopUp({
   };
   return (
     <div className={styles.confirmationPopUpContainer}>
-      <h2>Please confirm you booking</h2>
+      <h2>Please confirm your booking</h2>
       <p>Name: {bookingData.name}</p>
       <p>Phone: {bookingData.phone}</p>
       <p>Booking Type: {bookingData.bookingType}</p>
