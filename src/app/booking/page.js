@@ -14,12 +14,29 @@ export default function Booking() {
     phone: "",
     persons: 4,
     bookingType: "Friendly",
+    time: "",
   });
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
 
   const bookingTypeOptions = ["Friendly", "Tournament", "Party", "Other"];
 
   const timeOptions = [
+    { label: "Select time", value: 0 },
+    { label: "8:00", value: "8:00:00" },
+    { label: "9:00", value: "9:00:00" },
+    { label: "10:00", value: "10:00:00" },
+    { label: "11:00", value: "11:00:00" },
+    { label: "12:00", value: "12:00:00" },
+    { label: "13:00", value: "13:00:00" },
+    { label: "14:00", value: "14:00:00" },
+    { label: "17:00", value: "17:00:00" },
+    { label: "18:00", value: "18:00:00" },
+    { label: "19:00", value: "19:00:00" },
+    { label: "20:00", value: "20:00:00" },
+    { label: "21:00", value: "21:00:00" },
+  ];
+
+  const durationOptions = [
     { label: "Select time", value: 0 },
     { label: "1 hour", value: 1 },
     { label: "2 hours", value: 2 },
@@ -150,15 +167,36 @@ export default function Booking() {
           calendarType="iso8601"
         />
       </div>
-      <div className={styles.timeSelectionContainer}>
-        <h3>Duration:</h3>
+      <div className={styles.timeContainer}>
+        <h3>Time:</h3>
         <select
           className={styles.timeOptionsContainer}
           name="time"
           id="time-select"
+          onChange={(e) =>
+            setBookingData((prev) => ({
+              ...prev,
+              time: e.target.value,
+            }))
+          }
+          value={bookingData.time}
+        >
+          {timeOptions.map((time, index) => (
+            <option key={index} value={time.value}>
+              {time.label}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className={styles.durationSelectionContainer}>
+        <h3>Duration:</h3>
+        <select
+          className={styles.durationOptionsContainer}
+          name="time"
+          id="time-select"
           onChange={handleTimeValueChange}
         >
-          {timeOptions.map((option, index) => (
+          {durationOptions.map((option, index) => (
             <option key={index} value={option.value}>
               {option.label}
             </option>

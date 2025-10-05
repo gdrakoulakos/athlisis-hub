@@ -9,7 +9,7 @@
 .bookingTypeContainer,
 .personsContainer,
 .dateSelectionContainer,
-.timeSelectionContainer,
+.durationSelectionContainer,
 .courtSelectionContainer {
   margin-bottom: 20px;
 }

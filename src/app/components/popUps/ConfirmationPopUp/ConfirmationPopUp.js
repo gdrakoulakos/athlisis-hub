@@ -9,6 +9,7 @@ export default function ConfirmationPopUp({ bookingData, setIsPopUpVisible }) {
       <p>Booking Type: {bookingData.bookingType}</p>
       <p>Persons: {bookingData.persons}</p>
       <p>Date: {bookingData.date.toDateString()}</p>
+      <p>Time: {bookingData.time}</p>
       <p>Duration: {bookingData.duration} hours</p>
       <p>Court: Court {bookingData.court}</p>
       <div className={styles.buttonContainer}>
