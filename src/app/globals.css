@@ -10,15 +10,103 @@ body {
   }
 
   h1 {
-    font-weight: 100;
-    font-size: 30px;
     color: #fd705c;
+    font-size: 30px;
     font-weight: 800;
+    text-align: center;
+    margin-bottom: 0;
   }
 
   h2 {
     color: #fd705c;
+  }
+
+  h3 {
+    color: #fd705c;
+    font-weight: 800;
     margin: 0;
-    font-weight: 100;
+    margin-bottom: 15px;
+  }
+
+  p {
+    color: #fd705c;
+    font-size: 18px;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  select,
+  option,
+  input {
+    box-sizing: border-box;
+    margin: 0;
+    margin-bottom: 10px;
+    font: inherit;
+    width: 100%;
+    font-family: "Futura", "Century Gothic", "Gill Sans";
+    font-size: 16px;
+    border-radius: 20px;
+    padding: 5px 10px 5px 10px;
+    color: #fd705c;
+    border: solid 1px #fd705c;
+  }
+
+  .react-calendar {
+    border-radius: 20px;
+    font-family: "Futura", "Century Gothic", "Gill Sans";
+    font-size: 18px;
+  }
+
+  .react-calendar__navigation {
+    margin-bottom: 0;
+  }
+
+  .react-calendar__navigation button {
+    font-size: 18px;
+    font-family: "Futura", "Century Gothic", "Gill Sans";
+    font-weight: 800;
+    color: #fd705c;
+  }
+
+  .react-calendar__tile--now,
+  .react-calendar__tile--active,
+  .react-calendar__tile--active:enabled:hover,
+  .react-calendar__tile--active:enabled:focus {
+    background: #fd705c;
+    color: white;
+    border-radius: 20px;
+  }
+
+  .react-calendar__tile--now {
+    background: #ffdfdb;
+    border-radius: 20px;
+    color: #fd705c;
+  }
+
+  button {
+    background-color: #fd705c;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    margin: 10px;
+    text-decoration: none;
+    border: none;
+  }
+
+  button:hover {
+    background-color: #ffdfdb;
+  }
+
+  button:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+
+  button:focus-visible {
+    box-shadow: none;
   }
 }

@@ -1,0 +1,14 @@
+.bookingBlock {
+  padding: 0 20px 0 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.nameContainer,
+.bookingTypeContainer,
+.personsContainer,
+.dateSelectionContainer,
+.timeSelectionContainer,
+.courtSelectionContainer {
+  margin-bottom: 20px;
+}
