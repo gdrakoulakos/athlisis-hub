@@ -3,6 +3,7 @@ import Calendar from "react-calendar";
 import styles from "./page.module.css";
 import "react-calendar/dist/Calendar.css";
 import { useState } from "react";
+import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/ConfirmationPopUp";
 
 export default function Booking() {
   const [bookingData, setBookingData] = useState({
@@ -10,9 +11,11 @@ export default function Booking() {
     duration: null,
     court: null,
     name: "",
+    phone: "",
     persons: 4,
     bookingType: "Friendly",
   });
+  const [isPopUpVisible, setIsPopUpVisible] = useState(false);
 
   const bookingTypeOptions = ["Friendly", "Tournament", "Party", "Other"];
 
@@ -45,6 +48,13 @@ export default function Booking() {
     }));
   };
 
+  const handlePhoneValueChange = (e) => {
+    setBookingData((prev) => ({
+      ...prev,
+      phone: e.target.value,
+    }));
+  };
+
   const handlePersonsValueChange = (e) => {
     setBookingData((prev) => ({
       ...prev,
@@ -69,6 +79,7 @@ export default function Booking() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted:", bookingData);
+    setIsPopUpVisible(true);
   };
 
   return (
@@ -83,7 +94,16 @@ export default function Booking() {
           value={bookingData.name}
           onChange={handleNameValueChange}
         />
-        <p>You typed: {bookingData.name}</p>
+      </div>
+      <div className={styles.phoneContainer}>
+        <h3>Phone Number:</h3>
+        <input
+          className={styles.phoneInput}
+          type="number"
+          placeholder="Your phone number..."
+          value={bookingData.phone}
+          onChange={handlePhoneValueChange}
+        />
       </div>
       <div className={styles.bookingTypeContainer}>
         <h3>Booking Type:</h3>
@@ -105,7 +125,6 @@ export default function Booking() {
             </option>
           ))}
         </select>
-        <p>You selected: {bookingData.bookingType}</p>
       </div>
       <div className={styles.personsContainer}>
         <h3>Persons:</h3>
@@ -116,7 +135,6 @@ export default function Booking() {
           value={bookingData.persons}
           onChange={handlePersonsValueChange}
         />
-        <p>You typed: {bookingData.persons}</p>
       </div>
       <div className={styles.dateSelectionContainer}>
         <h3>Date:</h3>
@@ -131,7 +149,6 @@ export default function Booking() {
           locale="en-US"
           calendarType="iso8601"
         />
-        <p>You selected: {bookingData.date.toDateString()}</p>
       </div>
       <div className={styles.timeSelectionContainer}>
         <h3>Duration:</h3>
@@ -147,9 +164,6 @@ export default function Booking() {
             </option>
           ))}
         </select>
-        {bookingData.duration > 0 && (
-          <p>You selected: {bookingData.duration} hours</p>
-        )}
       </div>
       <div className={styles.courtSelectionContainer}>
         <h3>Court:</h3>
@@ -165,13 +179,16 @@ export default function Booking() {
             </option>
           ))}
         </select>
-        {bookingData.court > 0 && (
-          <p>You selected: Court {bookingData.court}</p>
-        )}
       </div>
       <button className={styles.submitButton} onClick={handleSubmit}>
         Submit Booking
       </button>
+      {isPopUpVisible && (
+        <ConfirmationPopUp
+          bookingData={bookingData}
+          setIsPopUpVisible={setIsPopUpVisible}
+        />
+      )}
     </div>
   );
 }
