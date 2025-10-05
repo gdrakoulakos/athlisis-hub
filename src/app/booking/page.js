@@ -95,7 +95,6 @@ export default function Booking() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", bookingData);
     setIsPopUpVisible(true);
   };
 
