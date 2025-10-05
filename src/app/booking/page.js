@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import "react-calendar/dist/Calendar.css";
 import { useState } from "react";
 import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/ConfirmationPopUp";
+import SuccessfullyPopUp from "../components/popUps/SuccessfullyPopUp/SuccessfullyPopUp";
 
 export default function Booking() {
   const [bookingData, setBookingData] = useState({
@@ -19,6 +20,10 @@ export default function Booking() {
   });
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
   const bookingTypeOptions = ["Friendly", "Tournament", "Party", "Other"];
+  const [bookingResult, setBookingResult] = useState({
+    message: "",
+    successful: false,
+  });
 
   const timeOptions = [
     { label: "Select time", value: 0 },
@@ -117,9 +122,11 @@ export default function Booking() {
     });
     const data = await res.json();
     console.log(data.message);
+    setBookingResult({ message: data.message, successful: true });
+    setTimeout(() => {
+      setBookingResult({ message: "", successful: false });
+    }, 3000);
   };
-
-  console.log(bookingData);
 
   return (
     <div className={styles.bookingBlock}>
@@ -252,6 +259,9 @@ export default function Booking() {
           setIsPopUpVisible={setIsPopUpVisible}
           addBooking={addBooking}
         />
+      )}
+      {bookingResult.successful && (
+        <SuccessfullyPopUp message={bookingResult.message} />
       )}
     </div>
   );

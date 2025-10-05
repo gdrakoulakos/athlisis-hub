@@ -5,6 +5,10 @@ export default function ConfirmationPopUp({
   setIsPopUpVisible,
   addBooking,
 }) {
+  const handleConfirmClick = () => {
+    addBooking();
+    setIsPopUpVisible(false);
+  };
   return (
     <div className={styles.confirmationPopUpContainer}>
       <h2>Please confirm you booking</h2>
@@ -17,7 +21,7 @@ export default function ConfirmationPopUp({
       <p>Duration: {bookingData.duration} hours</p>
       <p>Court: Court {bookingData.court}</p>
       <div className={styles.buttonContainer}>
-        <button className={styles.confirmButton} onClick={addBooking}>
+        <button className={styles.confirmButton} onClick={handleConfirmClick}>
           Confirm
         </button>
         <button
