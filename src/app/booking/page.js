@@ -65,41 +65,13 @@ export default function Booking() {
     { label: "Court 6", value: 6 },
   ];
 
-  const handleNameValueChange = (e) => {
-    setBookingData((prev) => ({
-      ...prev,
-      name: e.target.value,
-    }));
-  };
-
-  const handlePhoneValueChange = (e) => {
-    setBookingData((prev) => ({
-      ...prev,
-      phone: e.target.value,
-    }));
-  };
-
-  const handlePersonsValueChange = (e) => {
-    setBookingData((prev) => ({
-      ...prev,
-      persons: e.target.value,
-    }));
-  };
-
-  const handleTimeValueChange = (e) => {
-    setBookingData((prev) => ({
-      ...prev,
-      duration: e.target.value,
-    }));
-  };
-
-  const handleCourtValueChange = (e) => {
-    setBookingData((prev) => ({
-      ...prev,
-      court: e.target.value,
-    }));
-  };
-
+const handleChange = (e) => {
+  const { name, value } = e.target;
+  setBookingData((prev) => ({
+    ...prev,
+    [name]: value,
+  }));
+};
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsPopUpVisible(true);
@@ -139,8 +111,9 @@ export default function Booking() {
           className={styles.nameInput}
           type="text"
           placeholder="Your name..."
+          name="name"
           value={bookingData.name}
-          onChange={handleNameValueChange}
+          onChange={handleChange}
         />
       </div>
       <div className={styles.phoneContainer}>
@@ -149,23 +122,19 @@ export default function Booking() {
           className={styles.phoneInput}
           type="number"
           placeholder="Your phone number..."
+          name="phone"
           value={bookingData.phone}
-          onChange={handlePhoneValueChange}
+          onChange={handleChange}
         />
       </div>
       <div className={styles.bookingTypeContainer}>
         <h3>Booking Type:</h3>
         <select
           className={styles.bookingTypeOptionsContainer}
-          name="bookingType"
+          name="type"
           id="booking-type-select"
-          onChange={(e) =>
-            setBookingData((prev) => ({
-              ...prev,
-              type: e.target.value,
-            }))
-          }
           value={bookingData.type}
+          onChange={handleChange}
         >
           {bookingTypeOptions.map((option, index) => (
             <option key={index} value={option}>
@@ -180,8 +149,9 @@ export default function Booking() {
           className={styles.nameInput}
           type="number"
           placeholder="Number of persons..."
+          name="persons"
           value={bookingData.persons}
-          onChange={handlePersonsValueChange}
+          onChange={handleChange}
         />
       </div>
       <div className={styles.dateSelectionContainer}>
@@ -190,7 +160,7 @@ export default function Booking() {
           onChange={(date) =>
             setBookingData((prev) => ({
               ...prev,
-              date: date,
+              date,
               formattedDate: date.toISOString().split("T")[0],
             }))
           }
@@ -205,13 +175,8 @@ export default function Booking() {
           className={styles.timeOptionsContainer}
           name="time"
           id="time-select"
-          onChange={(e) =>
-            setBookingData((prev) => ({
-              ...prev,
-              time: e.target.value,
-            }))
-          }
           value={bookingData.time}
+          onChange={handleChange}
         >
           {timeOptions.map((time, index) => (
             <option key={index} value={time.value}>
@@ -224,10 +189,10 @@ export default function Booking() {
         <h3>Duration:</h3>
         <select
           className={styles.durationOptionsContainer}
-          name="time"
-          id="time-select"
-          onChange={handleTimeValueChange}
+          name="duration"
+          id="duration-select"
           value={bookingData.duration}
+          onChange={handleChange}
         >
           {durationOptions.map((option, index) => (
             <option key={index} value={option.value}>
@@ -242,8 +207,8 @@ export default function Booking() {
           className={styles.courtOptionsContainer}
           name="court"
           id="court-select"
-          onChange={handleCourtValueChange}
           value={bookingData.court}
+          onChange={handleChange}
         >
           {courtOptions.map((option, index) => (
             <option key={index} value={option.value}>

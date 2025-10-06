@@ -14,7 +14,7 @@ export default function ConfirmationPopUp({
       <h2>Please confirm your booking</h2>
       <p>Name: {bookingData.name}</p>
       <p>Phone: {bookingData.phone}</p>
-      <p>Booking Type: {bookingData.bookingType}</p>
+      <p>Booking Type: {bookingData.type}</p>
       <p>Persons: {bookingData.persons}</p>
       <p>Date: {bookingData.date.toDateString()}</p>
       <p>Time: {bookingData.time}</p>
