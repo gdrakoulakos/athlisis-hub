@@ -27,7 +27,7 @@ export async function POST(req) {
 
     return Response.json({
       message: "Booking added successfully",
-      movie: insertedBookingData,
+      booking: insertedBookingData,
     });
   } catch (err) {
     return new Response(JSON.stringify({ error: err.message }), {
