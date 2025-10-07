@@ -5,7 +5,7 @@ import "react-calendar/dist/Calendar.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/ConfirmationPopUp";
-import SuccessfullyPopUp from "../components/popUps/SuccessfullyPopUp/SuccessfullyPopUp";
+import ResultPopUp from "../components/popUps/ResultPopUp/ResultPopUp";
 
 export default function Booking() {
   const [bookingData, setBookingData] = useState({
@@ -65,13 +65,13 @@ export default function Booking() {
     { label: "Court 6", value: 6 },
   ];
 
-const handleChange = (e) => {
-  const { name, value } = e.target;
-  setBookingData((prev) => ({
-    ...prev,
-    [name]: value,
-  }));
-};
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setBookingData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsPopUpVisible(true);
@@ -228,7 +228,7 @@ const handleChange = (e) => {
         />
       )}
       {bookingResult.successful && (
-        <SuccessfullyPopUp message={bookingResult.message} />
+        <ResultPopUp message={bookingResult.message} />
       )}
     </div>
   );
