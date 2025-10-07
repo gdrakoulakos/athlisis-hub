@@ -1,5 +1,5 @@
 .requestsOverviewBlock {
-  width: 95%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +15,6 @@
   overflow: hidden;
 }
 
-/* scrollable content */
 .requestsOverviewList {
   width: 100%;
   height: 100%;
@@ -29,7 +28,6 @@
   background: transparent;
 }
 
-/* bottom fade overlay (on wrapper) */
 .requestsOverviewListWrapper::after {
   content: "";
   position: absolute;

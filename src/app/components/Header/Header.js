@@ -9,7 +9,7 @@ export default function Header() {
     { name: "Home", path: "/" },
     { name: "Booking", path: "/booking" },
     { name: "Groups", path: "/groups" },
-    { name: "Events", path: "/events" },
+    { name: "Manage Bookings", path: "/manage-bookings" },
     { name: "Calendar", path: "/calendar" },
   ];
   const [menuOpen, setMenuOpen] = useState(false);

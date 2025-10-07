@@ -7,8 +7,10 @@
   background-color: #fd705c;
   border-radius: 0 0 30px 30px;
   margin-bottom: 10px;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
 }
 
 .logo {
