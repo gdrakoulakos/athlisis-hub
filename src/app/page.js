@@ -1,22 +1,22 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styles from "./page.module.css";
 import RequestsOverview from "./components/RequestsOverview/RequestsOverview";
 import ButtonReserveCourt from "./components/ButtonReserveCourt/ButtonReserveCourt";
 import { useGetBookingsQuery } from "@/store/bookingApi";
+import { setBookings } from "@/store/bookingsSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
-  const [bookings, setBookings] = useState([]);
   const { data, isLoading, error } = useGetBookingsQuery();
+  const bookings = useSelector((state) => state.bookings.list);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (data) {
-      setBookings(data);
+      dispatch(setBookings(data));
     }
   }, [data]);
-
-  console.log("isLoading",isLoading);
-  console.log("error",error);
 
   return (
     <div className={styles.homePageSection}>
