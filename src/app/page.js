@@ -9,20 +9,14 @@ export default function Home() {
   const [bookings, setBookings] = useState([]);
   const { data, isLoading, error } = useGetBookingsQuery();
 
-  console.log("data", data);
-
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const res = await fetch("/api/bookings");
-        const data = await res.json();
-        setBookings(data);
-      } catch (err) {
-        console.error("Error fetching data:", err);
-      }
+    if (data) {
+      setBookings(data);
     }
-    fetchData();
-  }, []);
+  }, [data]);
+
+  console.log("isLoading",isLoading);
+  console.log("error",error);
 
   return (
     <div className={styles.homePageSection}>
