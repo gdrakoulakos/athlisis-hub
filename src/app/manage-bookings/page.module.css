@@ -1,0 +1,43 @@
+.tableContainer {
+  width: 100%;
+  text-align: left;
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerLeftInfo {
+  display: flex;
+  flex-direction: row;
+}
+
+.headerLeftItems {
+  display: flex;
+  flex-direction: column;
+}
+
+.headerDateTimeContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.type,
+.persons,
+.duration,
+.phone,
+.court {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
