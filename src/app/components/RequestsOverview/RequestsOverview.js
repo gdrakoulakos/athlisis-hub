@@ -1,5 +1,5 @@
-import Image from "next/image";
 import styles from "./RequestsOverview.module.css";
+import ImageBookingType from "../ImageBookingType/ImageBookingType";
 
 export default function RequestsOverview({ title, status, bookings }) {
   const booked = bookings.filter((booking) => booking.status === status);
@@ -12,16 +12,7 @@ export default function RequestsOverview({ title, status, bookings }) {
           <section className={styles.requestsOverviewList}>
             {booked.map((booking, index) => (
               <article key={index} className={styles.requestsOverviewItem}>
-                <figure className={styles.requestsOverviewItemImage}>
-                  <Image
-                    src={`/images/${booking.type}.png`}
-                    alt="Tennis Icon"
-                    width={60}
-                    height={60}
-                    loading="lazy"
-                    className={styles.requestsOverviewItemImg}
-                  />
-                </figure>
+                <ImageBookingType bookingType={booking.type} size={60} />
                 <div className={styles.requestsOverviewItemInfo}>
                   <div className={styles.requestsOverviewItemTopRow}>
                     <time className={styles.requestsOverviewItemDate}>

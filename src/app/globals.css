@@ -1,3 +1,12 @@
+/* background: #8b8b8b light gray*/
+/* background: #f9f9f9; very light gray*/
+
+/* color: #fd705c; orange */
+/* background: #ffdfdb; light orange */
+/* background: #ffe9e6; very light orange */
+
+/* border-radius: 20px; */
+
 html,
 body {
   margin: 0;
@@ -28,6 +37,12 @@ body {
     font-weight: 800;
     margin: 0;
     margin-bottom: 15px;
+  }
+
+  h4 {
+    color: #fd705c;
+    font-weight: 800;
+    margin: 0;
   }
 
   p {

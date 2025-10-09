@@ -62,14 +62,6 @@
   flex-direction: row;
 }
 
-.requestsOverviewItemImage {
-  margin-right: 10px;
-}
-
-.requestsOverviewItemImg {
-  border-radius: 50%;
-}
-
 .requestsOverviewItemInfo {
   width: 100%;
 }
