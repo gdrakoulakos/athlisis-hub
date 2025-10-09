@@ -6,11 +6,15 @@ const bookingsSlice = createSlice({
     list: [],
   },
   reducers: {
-    setBookings: (state, action) => {
+    setBooking: (state, action) => {
       state.list = action.payload;
+    },
+    removeBooking: (state, action) => {
+      const { id } = action.payload;
+      state.list = state.list.filter((item) => item.id !== id);
     },
   },
 });
 
-export const { setBookings } = bookingsSlice.actions;
+export const { setBooking, removeBooking } = bookingsSlice.actions;
 export default bookingsSlice.reducer;

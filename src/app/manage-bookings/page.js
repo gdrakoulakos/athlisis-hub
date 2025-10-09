@@ -1,15 +1,56 @@
 "use client";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import styles from "./page.module.css";
 import ImageBookingType from "../components/ImageBookingType/ImageBookingType";
+import ResultPopUp from "../components/popUps/ResultPopUp/ResultPopUp";
+import { removeBooking } from "@/store/bookingsSlice";
+import { useGetBookingsQuery } from "@/store/bookingApi";
+import { useState } from "react";
 
 export default function ManageBookings() {
-  const bookings = useSelector((state) => state.bookings.list);
+  const dispatch = useDispatch();
+  const [bookingResult, setBookingResult] = useState({
+    message: "",
+    successful: false,
+  });
+
+  const { data, isLoading, error, refetch } = useGetBookingsQuery();
+
+  const deleteBooking = async (id) => {
+    try {
+      const res = await fetch("/api/bookings", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        console.error("Error deleting booking:", data.error);
+        return;
+      }
+      await refetch();
+      dispatch(removeBooking(id));
+      setBookingResult({
+        message: "Booking deleted successfully!",
+        successful: true,
+      });
+      setTimeout(() => {
+        setBookingResult({
+          message: "",
+          successful: false,
+        });
+      }, 3000);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   return (
     <div className={styles.manageBookingsSection}>
       <h2>Manage Bookings</h2>
-      {bookings.map((booking) => (
+      {data?.map((booking) => (
         <div key={booking.id} className={styles.cardsContainer}>
           <div className={styles.cardHeader}>
             <div className={styles.headerLeftInfo}>
@@ -49,7 +90,12 @@ export default function ManageBookings() {
                 <div>{booking.court}</div>
               </div>
               <div className={styles.buttonsContainer}>
-                <button className={styles.deleteButton}>Delete</button>
+                <button
+                  className={styles.deleteButton}
+                  onClick={() => deleteBooking(booking.id)}
+                >
+                  Delete
+                </button>
                 <button className={styles.editButton}>Edit</button>
                 {booking.status === "Pending" && (
                   <button className={styles.acknowledgeButton}>
@@ -61,6 +107,9 @@ export default function ManageBookings() {
           </div>
         </div>
       ))}
+      {bookingResult.successful && (
+        <ResultPopUp message={bookingResult.message} />
+      )}
     </div>
   );
 }

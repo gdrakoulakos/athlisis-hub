@@ -35,3 +35,31 @@ export async function POST(req) {
     });
   }
 }
+
+export async function DELETE(req) {
+  try {
+    const { id } = await req.json(); // Expecting { "id": <booking_id> }
+
+    if (!id) {
+      return new Response(JSON.stringify({ error: "Missing booking ID" }), {
+        status: 400,
+      });
+    }
+
+    const { error } = await supabase.from("bookings").delete().eq("id", id);
+
+    if (error) {
+      return new Response(JSON.stringify({ error: error.message }), {
+        status: 500,
+      });
+    }
+
+    return Response.json({
+      message: `Booking with ID ${id} deleted successfully`,
+    });
+  } catch (err) {
+    return new Response(JSON.stringify({ error: err.message }), {
+      status: 500,
+    });
+  }
+}
