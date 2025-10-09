@@ -2,7 +2,7 @@
   width: 100%;
 }
 
-.cardContainer {
+.cardsContainer {
   width: 100%;
   border: solid #fd705c 1px;
   border-radius: 20px;
@@ -69,4 +69,28 @@
 .duration,
 .court {
   background-color: #ffe9e6;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.deleteButton {
+  color: #ab1615;
+  font-size: 14px;
+  background-color: #ffdfdb;
+}
+
+.editButton {
+  color: #fd705c;
+  font-size: 14px;
+  background-color: #ffdfdb;
+}
+
+.acknowledgeButton {
+  color: #22976e;
+  font-size: 14px;
+  background-color: #ccffe7;
 }
