@@ -9,14 +9,15 @@ import ResultPopUp from "../components/popUps/ResultPopUp/ResultPopUp";
 
 export default function Booking() {
   const [bookingData, setBookingData] = useState({
+    action: "addBooking",
     date: new Date(),
     duration: 0,
     court: 0,
-    name: "",
-    phone: "",
+    name: "Test User",
+    phone: "00000000000",
     persons: 4,
     type: "Friendly",
-    time: "",
+    time: "9:00:00",
     status: "Pending",
   });
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
@@ -103,133 +104,139 @@ export default function Booking() {
   };
 
   return (
-    <div className={styles.bookingBlock}>
-      <h1>Booking</h1>
-      <div className={styles.nameContainer}>
-        <h3>Name:</h3>
-        <input
-          className={styles.nameInput}
-          type="text"
-          placeholder="Your name..."
-          name="name"
-          value={bookingData.name}
-          onChange={handleChange}
-        />
-      </div>
-      <div className={styles.phoneContainer}>
-        <h3>Phone Number:</h3>
-        <input
-          className={styles.phoneInput}
-          type="number"
-          placeholder="Your phone number..."
-          name="phone"
-          value={bookingData.phone}
-          onChange={handleChange}
-        />
-      </div>
-      <div className={styles.bookingTypeContainer}>
-        <h3>Booking Type:</h3>
-        <select
-          className={styles.bookingTypeOptionsContainer}
-          name="type"
-          id="booking-type-select"
-          value={bookingData.type}
-          onChange={handleChange}
-        >
-          {bookingTypeOptions.map((option, index) => (
-            <option key={index} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className={styles.personsContainer}>
-        <h3>Persons:</h3>
-        <input
-          className={styles.nameInput}
-          type="number"
-          placeholder="Number of persons..."
-          name="persons"
-          value={bookingData.persons}
-          onChange={handleChange}
-        />
-      </div>
-      <div className={styles.dateSelectionContainer}>
-        <h3>Date:</h3>
-        <Calendar
-          onChange={(date) =>
-            setBookingData((prev) => ({
-              ...prev,
-              date,
-              formattedDate: date.toISOString().split("T")[0],
-            }))
-          }
-          value={bookingData.date}
-          locale="en-US"
-          calendarType="iso8601"
-        />
-      </div>
-      <div className={styles.timeContainer}>
-        <h3>Time:</h3>
-        <select
-          className={styles.timeOptionsContainer}
-          name="time"
-          id="time-select"
-          value={bookingData.time}
-          onChange={handleChange}
-        >
-          {timeOptions.map((time, index) => (
-            <option key={index} value={time.value}>
-              {time.label}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className={styles.durationSelectionContainer}>
-        <h3>Duration:</h3>
-        <select
-          className={styles.durationOptionsContainer}
-          name="duration"
-          id="duration-select"
-          value={bookingData.duration}
-          onChange={handleChange}
-        >
-          {durationOptions.map((option, index) => (
-            <option key={index} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className={styles.courtSelectionContainer}>
-        <h3>Court:</h3>
-        <select
-          className={styles.courtOptionsContainer}
-          name="court"
-          id="court-select"
-          value={bookingData.court}
-          onChange={handleChange}
-        >
-          {courtOptions.map((option, index) => (
-            <option key={index} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </div>
-      <button className={styles.submitButton} onClick={handleSubmit}>
-        Submit Booking
-      </button>
-      {isPopUpVisible && (
-        <ConfirmationPopUp
-          bookingData={bookingData}
-          setIsPopUpVisible={setIsPopUpVisible}
-          addBooking={addBooking}
-        />
+    <>
+      {bookingData && (
+        <div className={styles.bookingBlock}>
+          <h1>Booking</h1>
+          <div className={styles.nameContainer}>
+            <h3>Name:</h3>
+            <input
+              className={styles.nameInput}
+              type="text"
+              placeholder="Your name..."
+              name="name"
+              value={bookingData.name}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={styles.phoneContainer}>
+            <h3>Phone Number:</h3>
+            <input
+              className={styles.phoneInput}
+              type="number"
+              placeholder="Your phone number..."
+              name="phone"
+              value={bookingData.phone}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={styles.bookingTypeContainer}>
+            <h3>Booking Type:</h3>
+            <select
+              className={styles.bookingTypeOptionsContainer}
+              name="type"
+              id="booking-type-select"
+              value={bookingData.type}
+              onChange={handleChange}
+            >
+              {bookingTypeOptions.map((option, index) => (
+                <option key={index} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={styles.personsContainer}>
+            <h3>Persons:</h3>
+            <input
+              className={styles.nameInput}
+              type="number"
+              placeholder="Number of persons..."
+              name="persons"
+              value={bookingData.persons}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={styles.dateSelectionContainer}>
+            <h3>Date:</h3>
+            <Calendar
+              onChange={(date) =>
+                setBookingData((prev) => ({
+                  ...prev,
+                  date,
+                  formattedDate: date.toISOString().split("T")[0],
+                }))
+              }
+              value={bookingData.date}
+              locale="en-US"
+              calendarType="iso8601"
+            />
+          </div>
+          <div className={styles.timeContainer}>
+            <h3>Time:</h3>
+            <select
+              className={styles.timeOptionsContainer}
+              name="time"
+              id="time-select"
+              value={bookingData.time}
+              onChange={handleChange}
+            >
+              {timeOptions.map((time, index) => (
+                <option key={index} value={time.value}>
+                  {time.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={styles.durationSelectionContainer}>
+            <h3>Duration:</h3>
+            <select
+              className={styles.durationOptionsContainer}
+              name="duration"
+              id="duration-select"
+              value={bookingData.duration}
+              onChange={handleChange}
+            >
+              {durationOptions.map((option, index) => (
+                <option key={index} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={styles.courtSelectionContainer}>
+            <h3>Court:</h3>
+            <select
+              className={styles.courtOptionsContainer}
+              name="court"
+              id="court-select"
+              value={bookingData.court}
+              onChange={handleChange}
+            >
+              {courtOptions.map((option, index) => (
+                <option key={index} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          <button className={styles.submitButton} onClick={handleSubmit}>
+            Submit Booking
+          </button>
+          {isPopUpVisible && (
+            <ConfirmationPopUp
+              bookingData={bookingData}
+              setIsPopUpVisible={setIsPopUpVisible}
+              addBooking={addBooking}
+              message={"Please confirm your booking"}
+              action={bookingData.action}
+            />
+          )}
+          {bookingResult.successful && (
+            <ResultPopUp message={bookingResult.message} />
+          )}
+        </div>
       )}
-      {bookingResult.successful && (
-        <ResultPopUp message={bookingResult.message} />
-      )}
-    </div>
+    </>
   );
 }

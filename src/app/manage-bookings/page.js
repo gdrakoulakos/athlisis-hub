@@ -6,12 +6,16 @@ import ResultPopUp from "../components/popUps/ResultPopUp/ResultPopUp";
 import { removeBooking } from "@/store/bookingsSlice";
 import { useGetBookingsQuery } from "@/store/bookingApi";
 import { useState } from "react";
+import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/ConfirmationPopUp";
 
 export default function ManageBookings() {
   const dispatch = useDispatch();
-  const [bookingResult, setBookingResult] = useState({
-    message: "",
-    successful: false,
+  const [isPopUpVisible, setIsPopUpVisible] = useState(false);
+  const [displaySuccessfulMessage, setDisplaySuccessfulMessage] =
+    useState(false);
+  const [confirmationMessage, setConfirmationMessage] = useState("");
+  const [bookingDataToDelete, setBookingDataToDelete] = useState({
+    action: "deleteBooking",
   });
 
   const { data, isLoading, error, refetch } = useGetBookingsQuery();
@@ -32,19 +36,16 @@ export default function ManageBookings() {
       }
       await refetch();
       dispatch(removeBooking(id));
-      setBookingResult({
-        message: "Booking deleted successfully!",
-        successful: true,
-      });
-      setTimeout(() => {
-        setBookingResult({
-          message: "",
-          successful: false,
-        });
-      }, 3000);
+      setDisplaySuccessfulMessage(true);
     } catch (error) {
       console.error("Error:", error);
     }
+  };
+
+  const handleDelete = (booking) => {
+    setBookingDataToDelete({ booking, action: "deleteBooking" });
+    setConfirmationMessage("Are you sure you want to delete this booking?");
+    setIsPopUpVisible(true);
   };
 
   return (
@@ -92,7 +93,7 @@ export default function ManageBookings() {
               <div className={styles.buttonsContainer}>
                 <button
                   className={styles.deleteButton}
-                  onClick={() => deleteBooking(booking.id)}
+                  onClick={() => handleDelete(booking)}
                 >
                   Delete
                 </button>
@@ -107,8 +108,20 @@ export default function ManageBookings() {
           </div>
         </div>
       ))}
-      {bookingResult.successful && (
-        <ResultPopUp message={bookingResult.message} />
+      {isPopUpVisible && (
+        <ConfirmationPopUp
+          message={confirmationMessage}
+          bookingData={bookingDataToDelete.booking}
+          setIsPopUpVisible={setIsPopUpVisible}
+          action={bookingDataToDelete.action}
+          deleteBooking={deleteBooking}
+        />
+      )}
+      {displaySuccessfulMessage && (
+        <ResultPopUp
+          message={"Booking has been deleted successfully"}
+          setDisplaySuccessfulMessage={setDisplaySuccessfulMessage}
+        />
       )}
     </div>
   );
