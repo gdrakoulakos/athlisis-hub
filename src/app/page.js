@@ -10,12 +10,12 @@ export default function Home() {
   return (
     <div className={styles.homePageSection}>
       <RequestsOverview
-        title={"Notifications"}
+        title={"New Bookings"}
         status={"Pending"}
         bookings={data || []}
       />
       <RequestsOverview
-        title={"Upcomings"}
+        title={"Acknowledged"}
         status={"Acknowledged"}
         bookings={data || []}
       />

@@ -9,6 +9,11 @@ export default function RequestsOverview({ title, status, bookings }) {
       <div className={styles.requestsOverviewBlock}>
         <h2 className={styles.requestsOverviewTitle}>{title}</h2>
         <div className={styles.requestsOverviewListWrapper}>
+          {status === "Pending" && (
+            <div className={styles.requestsOverviewCounter}>
+              {booked.length}
+            </div>
+          )}
           <section className={styles.requestsOverviewList}>
             {booked.map((booking, index) => (
               <article key={index} className={styles.requestsOverviewItem}>

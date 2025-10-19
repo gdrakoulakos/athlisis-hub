@@ -10,7 +10,7 @@ import ResultPopUp from "../components/popUps/ResultPopUp/ResultPopUp";
 export default function Booking() {
   const [bookingData, setBookingData] = useState({
     action: "addBooking",
-    date: new Date(),
+    date: new Date().toISOString().split("T")[0],
     duration: 0,
     court: 0,
     name: "Test User",
@@ -80,7 +80,7 @@ export default function Booking() {
 
   const addBooking = async () => {
     const newBooking = {
-      date: bookingData.formattedDate,
+      date: bookingData.date,
       time: bookingData.time,
       name: bookingData.name,
       type: bookingData.type,
@@ -161,11 +161,15 @@ export default function Booking() {
             <h3>Date:</h3>
             <Calendar
               onChange={(date) =>
-                setBookingData((prev) => ({
-                  ...prev,
-                  date,
-                  formattedDate: date.toISOString().split("T")[0],
-                }))
+                setBookingData((prev) => {
+                  const year = date.getFullYear();
+                  const month = String(date.getMonth() + 1).padStart(2, "0");
+                  const day = String(date.getDate()).padStart(2, "0");
+                  return {
+                    ...prev,
+                    date: `${year}-${month}-${day}`,
+                  };
+                })
               }
               value={bookingData.date}
               locale="en-US"

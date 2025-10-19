@@ -24,12 +24,7 @@ export default function ConfirmationPopUp({
       <p>Phone: {bookingData.phone}</p>
       <p>Booking Type: {bookingData.type}</p>
       <p>Persons: {bookingData.persons}</p>
-      <p>
-        Date:{" "}
-        {bookingData.date
-          ? new Date(bookingData.date).toLocaleDateString()
-          : "No date provided"}
-      </p>
+      <p>Date: {bookingData?.date}</p>
       <p>Time: {bookingData.time}</p>
       <p>Duration: {bookingData.duration} hours</p>
       <p>Court: Court {bookingData.court}</p>

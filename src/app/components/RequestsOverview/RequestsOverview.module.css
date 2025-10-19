@@ -12,7 +12,6 @@
   height: 200px;
   border-radius: 20px;
   background: #ffdfdb;
-  overflow: hidden;
 }
 
 .requestsOverviewList {
@@ -26,6 +25,22 @@
   box-sizing: border-box;
   z-index: 0;
   background: transparent;
+}
+
+.requestsOverviewCounter {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  width: 10px;
+  height: 10px;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #fd705c;
+  color: white;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  box-shadow: 0px 0px 5px 0px #fd705c;
 }
 
 .requestsOverviewListWrapper::after {
