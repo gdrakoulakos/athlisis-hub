@@ -12,8 +12,7 @@ export default function ManageBookings() {
   const dispatch = useDispatch();
   const [displayConfirmationPopUp, setDisplayConfirmationPopUp] =
     useState(false);
-  const [displayResultPopUp, setDisplayResultPopUp] =
-    useState(false);
+  const [displayResultPopUp, setDisplayResultPopUp] = useState(false);
   const [confirmationMessage, setConfirmationMessage] = useState("");
   const [bookingDataToDelete, setBookingDataToDelete] = useState({
     action: "deleteBooking",
@@ -59,10 +58,7 @@ export default function ManageBookings() {
               <ImageBookingType bookingType={booking.type} size={40} />
               <div className={styles.headerLeftItems}>
                 <h4 className={styles.headerName}>{booking.name}</h4>
-                <div className={styles.headerDateTimeContainer}>
-                  <div className={styles.headerDate}>{booking.date}</div>
-                  <div className={styles.headerTime}>{booking.time}</div>
-                </div>
+                <div className={styles.headerDate}>{booking.created_at}</div>
               </div>
             </div>
             <div className={styles.headerRightInfo}>
@@ -71,6 +67,14 @@ export default function ManageBookings() {
           </div>
           <div>
             <div className={styles.detailsContainer}>
+              <div className={styles.date}>
+                <div>Date: </div>
+                <div>{booking.date}</div>
+              </div>
+              <div className={styles.time}>
+                <div>Time: </div>
+                <div>{booking.time}</div>
+              </div>
               <div className={styles.type}>
                 <div>Type: </div>
                 <div>{booking.type}</div>

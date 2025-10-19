@@ -32,12 +32,6 @@
   flex-direction: column;
 }
 
-.headerDateTimeContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
 .headerDate,
 .headerTime {
   font-size: 15px;
@@ -50,6 +44,8 @@
   flex-direction: column;
 }
 
+.date,
+.time,
 .type,
 .persons,
 .duration,
@@ -65,6 +61,7 @@
   box-sizing: border-box;
 }
 
+.date,
 .type,
 .duration,
 .court {

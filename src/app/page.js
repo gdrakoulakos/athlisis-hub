@@ -12,8 +12,6 @@ export default function Home() {
   const acknowledgedBookings = Array.isArray(data)
     ? data.filter((booking) => booking.status === "Acknowledged")
     : [];
-  console.log("acknowledgedBookings", acknowledgedBookings);
-  console.log("data", data);
 
   return (
     <div className={styles.homePageSection}>
@@ -27,7 +25,7 @@ export default function Home() {
       <RequestsOverview
         title={"Acknowledged"}
         status={"Acknowledged"}
-        bookings={data || []}
+        bookings={acknowledgedBookings || []}
       />
       <ButtonReserveCourt />
     </div>
