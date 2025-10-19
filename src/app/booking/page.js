@@ -2,7 +2,6 @@
 import Calendar from "react-calendar";
 import styles from "./page.module.css";
 import "react-calendar/dist/Calendar.css";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/ConfirmationPopUp";
 import ResultPopUp from "../components/popUps/ResultPopUp/ResultPopUp";
@@ -22,11 +21,8 @@ export default function Booking() {
   });
   const [isPopUpVisible, setIsPopUpVisible] = useState(false);
   const bookingTypeOptions = ["Friendly", "Tournament", "Party", "Other"];
-  const [bookingResult, setBookingResult] = useState({
-    message: "",
-    successful: false,
-  });
-  const router = useRouter();
+  const [displaySuccessfulMessage, setDisplaySuccessfulMessage] =
+    useState(false);
 
   const timeOptions = [
     { label: "Select time", value: 0 },
@@ -95,12 +91,9 @@ export default function Booking() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newBooking),
     });
-    const data = await res.json();
-    setBookingResult({ message: data.message, successful: true });
-    setTimeout(() => {
-      setBookingResult({ message: "", successful: false });
-      router.push("/");
-    }, 3000);
+    if (res.ok) {
+      setDisplaySuccessfulMessage(true);
+    }
   };
 
   return (
@@ -236,8 +229,12 @@ export default function Booking() {
               action={bookingData.action}
             />
           )}
-          {bookingResult.successful && (
-            <ResultPopUp message={bookingResult.message} />
+          {displaySuccessfulMessage && (
+            <ResultPopUp
+              message={"Booking added successfully"}
+              setDisplaySuccessfulMessage={setDisplaySuccessfulMessage}
+              action={bookingData.action}
+            />
           )}
         </div>
       )}
