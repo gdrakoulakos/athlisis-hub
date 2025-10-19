@@ -2,7 +2,7 @@ import styles from "./ConfirmationPopUp.module.css";
 
 export default function ConfirmationPopUp({
   bookingData,
-  setIsPopUpVisible,
+  setDisplayConfirmationPopUp,
   addBooking,
   message,
   action,
@@ -14,7 +14,7 @@ export default function ConfirmationPopUp({
     } else if (action === "deleteBooking") {
       deleteBooking(bookingData.id);
     }
-    setIsPopUpVisible(false);
+    setDisplayConfirmationPopUp(false);
   };
 
   return (
@@ -34,7 +34,7 @@ export default function ConfirmationPopUp({
         </button>
         <button
           className={styles.cancelButton}
-          onClick={() => setIsPopUpVisible(false)}
+          onClick={() => setDisplayConfirmationPopUp(false)}
         >
           Cancel
         </button>

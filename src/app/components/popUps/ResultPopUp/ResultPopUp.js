@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 
 export default function ResultPopUp({
   message,
-  setDisplaySuccessfulMessage,
+  setDisplayResultPopUp,
   action,
 }) {
   const router = useRouter();
@@ -12,7 +12,7 @@ export default function ResultPopUp({
     if (action === "addBooking") {
       router.push("/");
     }
-    setDisplaySuccessfulMessage(false);
+    setDisplayResultPopUp(false);
   };
 
   return (

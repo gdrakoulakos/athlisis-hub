@@ -19,9 +19,9 @@ export default function Booking() {
     time: "9:00:00",
     status: "Pending",
   });
-  const [isPopUpVisible, setIsPopUpVisible] = useState(false);
+  const [displayConfirmationPopUp, setDisplayConfirmationPopUp] = useState(false);
   const bookingTypeOptions = ["Friendly", "Tournament", "Party", "Other"];
-  const [displaySuccessfulMessage, setDisplaySuccessfulMessage] =
+  const [displayResultPopUp, setDisplayResultPopUp] =
     useState(false);
 
   const timeOptions = [
@@ -71,7 +71,7 @@ export default function Booking() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsPopUpVisible(true);
+    setDisplayConfirmationPopUp(true);
   };
 
   const addBooking = async () => {
@@ -92,7 +92,7 @@ export default function Booking() {
       body: JSON.stringify(newBooking),
     });
     if (res.ok) {
-      setDisplaySuccessfulMessage(true);
+      setDisplayResultPopUp(true);
     }
   };
 
@@ -220,19 +220,19 @@ export default function Booking() {
           <button className={styles.submitButton} onClick={handleSubmit}>
             Submit Booking
           </button>
-          {isPopUpVisible && (
+          {displayConfirmationPopUp && (
             <ConfirmationPopUp
               bookingData={bookingData}
-              setIsPopUpVisible={setIsPopUpVisible}
+              setDisplayConfirmationPopUp={setDisplayConfirmationPopUp}
               addBooking={addBooking}
               message={"Please confirm your booking"}
               action={bookingData.action}
             />
           )}
-          {displaySuccessfulMessage && (
+          {displayResultPopUp && (
             <ResultPopUp
               message={"Booking added successfully"}
-              setDisplaySuccessfulMessage={setDisplaySuccessfulMessage}
+              setDisplayResultPopUp={setDisplayResultPopUp}
               action={bookingData.action}
             />
           )}

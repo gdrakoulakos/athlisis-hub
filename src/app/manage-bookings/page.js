@@ -10,8 +10,9 @@ import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/Confirmati
 
 export default function ManageBookings() {
   const dispatch = useDispatch();
-  const [isPopUpVisible, setIsPopUpVisible] = useState(false);
-  const [displaySuccessfulMessage, setDisplaySuccessfulMessage] =
+  const [displayConfirmationPopUp, setDisplayConfirmationPopUp] =
+    useState(false);
+  const [displayResultPopUp, setDisplayResultPopUp] =
     useState(false);
   const [confirmationMessage, setConfirmationMessage] = useState("");
   const [bookingDataToDelete, setBookingDataToDelete] = useState({
@@ -36,7 +37,7 @@ export default function ManageBookings() {
       }
       await refetch();
       dispatch(removeBooking(id));
-      setDisplaySuccessfulMessage(true);
+      setDisplayResultPopUp(true);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -45,7 +46,7 @@ export default function ManageBookings() {
   const handleDelete = (booking) => {
     setBookingDataToDelete({ booking, action: "deleteBooking" });
     setConfirmationMessage("Are you sure you want to delete this booking?");
-    setIsPopUpVisible(true);
+    setDisplayConfirmationPopUp(true);
   };
 
   return (
@@ -108,19 +109,19 @@ export default function ManageBookings() {
           </div>
         </div>
       ))}
-      {isPopUpVisible && (
+      {displayConfirmationPopUp && (
         <ConfirmationPopUp
           message={confirmationMessage}
           bookingData={bookingDataToDelete.booking}
-          setIsPopUpVisible={setIsPopUpVisible}
+          setDisplayConfirmationPopUp={setDisplayConfirmationPopUp}
           action={bookingDataToDelete.action}
           deleteBooking={deleteBooking}
         />
       )}
-      {displaySuccessfulMessage && (
+      {displayResultPopUp && (
         <ResultPopUp
           message={"Booking has been deleted successfully"}
-          setDisplaySuccessfulMessage={setDisplaySuccessfulMessage}
+          setDisplayResultPopUp={setDisplayResultPopUp}
         />
       )}
     </div>
