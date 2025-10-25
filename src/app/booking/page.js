@@ -12,9 +12,14 @@ import { useDispatch } from "react-redux";
 export default function Booking() {
   const dispatch = useDispatch();
 
+  const today = new Date();
+  const formattedToday = `${today.getFullYear()}-${String(
+    today.getMonth() + 1
+  ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+
   const [bookingData, setBookingData] = useState({
     action: "addBooking",
-    date: new Date().toISOString().split("T")[0],
+    date: formattedToday,
     duration: 0,
     court: 0,
     name: "Test User",
