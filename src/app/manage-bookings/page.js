@@ -9,6 +9,7 @@ import { displayResultPopUp } from "@/redux/features/popUps/resultPopUpSlice";
 import { useGetBookingsQuery } from "@/redux/api/bookingApi";
 import { useState } from "react";
 import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/ConfirmationPopUp";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 export default function ManageBookings() {
   const dispatch = useDispatch();
@@ -18,6 +19,11 @@ export default function ManageBookings() {
   });
 
   const { data, isLoading, error, refetch } = useGetBookingsQuery();
+
+  const sortedData =
+    data
+      ?.slice()
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at)) || [];
 
   const deleteBooking = async (id) => {
     try {
@@ -50,7 +56,8 @@ export default function ManageBookings() {
   return (
     <div className={styles.manageBookingsSection}>
       <h2>Manage Bookings</h2>
-      {data?.map((booking) => (
+      {isLoading && <LoadingSpinner />}
+      {sortedData?.map((booking) => (
         <div key={booking.id} className={styles.cardsContainer}>
           <div className={styles.cardHeader}>
             <div className={styles.headerLeftInfo}>
