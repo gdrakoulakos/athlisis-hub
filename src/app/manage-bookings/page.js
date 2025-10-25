@@ -3,15 +3,14 @@ import { useDispatch } from "react-redux";
 import styles from "./page.module.css";
 import ImageBookingType from "../components/ImageBookingType/ImageBookingType";
 import ResultPopUp from "../components/popUps/ResultPopUp/ResultPopUp";
-import { removeBooking } from "@/store/bookingsSlice";
-import { useGetBookingsQuery } from "@/store/bookingApi";
+import { removeBooking } from "@/redux/features/bookingsSlice";
+import { displayConfirmationPopUp } from "@/redux/features/popUps/displayConfirmationPopUpSlice";
+import { useGetBookingsQuery } from "@/redux/api/bookingApi";
 import { useState } from "react";
 import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/ConfirmationPopUp";
 
 export default function ManageBookings() {
   const dispatch = useDispatch();
-  const [displayConfirmationPopUp, setDisplayConfirmationPopUp] =
-    useState(false);
   const [displayResultPopUp, setDisplayResultPopUp] = useState(false);
   const [confirmationMessage, setConfirmationMessage] = useState("");
   const [bookingDataToDelete, setBookingDataToDelete] = useState({
@@ -45,7 +44,7 @@ export default function ManageBookings() {
   const handleDelete = (booking) => {
     setBookingDataToDelete({ booking, action: "deleteBooking" });
     setConfirmationMessage("Are you sure you want to delete this booking?");
-    setDisplayConfirmationPopUp(true);
+    dispatch(displayConfirmationPopUp());
   };
 
   return (
@@ -113,15 +112,12 @@ export default function ManageBookings() {
           </div>
         </div>
       ))}
-      {displayConfirmationPopUp && (
-        <ConfirmationPopUp
-          message={confirmationMessage}
-          bookingData={bookingDataToDelete.booking}
-          setDisplayConfirmationPopUp={setDisplayConfirmationPopUp}
-          action={bookingDataToDelete.action}
-          deleteBooking={deleteBooking}
-        />
-      )}
+      <ConfirmationPopUp
+        message={confirmationMessage}
+        bookingData={bookingDataToDelete.booking}
+        action={bookingDataToDelete.action}
+        deleteBooking={deleteBooking}
+      />
       {displayResultPopUp && (
         <ResultPopUp
           message={"Booking has been deleted successfully"}

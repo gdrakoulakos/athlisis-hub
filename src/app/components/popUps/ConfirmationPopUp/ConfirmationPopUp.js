@@ -1,20 +1,27 @@
+"use client";
 import styles from "./ConfirmationPopUp.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { hideConfirmationPopUp } from "@/redux/features/popUps/displayConfirmationPopUpSlice";
 
 export default function ConfirmationPopUp({
   bookingData,
-  setDisplayConfirmationPopUp,
   addBooking,
   message,
   action,
   deleteBooking,
 }) {
+  const dispatch = useDispatch();
+  const displayPopUp = useSelector((state) => state.popUp.displayPopUp);
+
+  if (!displayPopUp) return null;
+
   const handleConfirmClick = () => {
     if (action === "addBooking") {
       addBooking();
     } else if (action === "deleteBooking") {
       deleteBooking(bookingData.id);
     }
-    setDisplayConfirmationPopUp(false);
+    dispatch(hideConfirmationPopUp());
   };
 
   return (
@@ -34,7 +41,7 @@ export default function ConfirmationPopUp({
         </button>
         <button
           className={styles.cancelButton}
-          onClick={() => setDisplayConfirmationPopUp(false)}
+          onClick={() => dispatch(hideConfirmationPopUp())}
         >
           Cancel
         </button>

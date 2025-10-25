@@ -5,8 +5,12 @@ import "react-calendar/dist/Calendar.css";
 import { useState } from "react";
 import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/ConfirmationPopUp";
 import ResultPopUp from "../components/popUps/ResultPopUp/ResultPopUp";
+import { displayConfirmationPopUp } from "@/redux/features/popUps/displayConfirmationPopUpSlice";
+import { useDispatch } from "react-redux";
 
 export default function Booking() {
+  const dispatch = useDispatch();
+
   const [bookingData, setBookingData] = useState({
     action: "addBooking",
     date: new Date().toISOString().split("T")[0],
@@ -19,10 +23,9 @@ export default function Booking() {
     time: "9:00:00",
     status: "Pending",
   });
-  const [displayConfirmationPopUp, setDisplayConfirmationPopUp] = useState(false);
+
   const bookingTypeOptions = ["Friendly", "Tournament", "Party", "Other"];
-  const [displayResultPopUp, setDisplayResultPopUp] =
-    useState(false);
+  const [displayResultPopUp, setDisplayResultPopUp] = useState(false);
 
   const timeOptions = [
     { label: "Select time", value: 0 },
@@ -68,10 +71,6 @@ export default function Booking() {
       ...prev,
       [name]: value,
     }));
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setDisplayConfirmationPopUp(true);
   };
 
   const addBooking = async () => {
@@ -217,18 +216,18 @@ export default function Booking() {
               ))}
             </select>
           </div>
-          <button className={styles.submitButton} onClick={handleSubmit}>
+          <button
+            className={styles.submitButton}
+            onClick={() => dispatch(displayConfirmationPopUp())}
+          >
             Submit Booking
           </button>
-          {displayConfirmationPopUp && (
-            <ConfirmationPopUp
-              bookingData={bookingData}
-              setDisplayConfirmationPopUp={setDisplayConfirmationPopUp}
-              addBooking={addBooking}
-              message={"Please confirm your booking"}
-              action={bookingData.action}
-            />
-          )}
+          <ConfirmationPopUp
+            bookingData={bookingData}
+            addBooking={addBooking}
+            message={"Please confirm your booking"}
+            action={bookingData.action}
+          />
           {displayResultPopUp && (
             <ResultPopUp
               message={"Booking added successfully"}
