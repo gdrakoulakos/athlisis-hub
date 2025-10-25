@@ -3,9 +3,16 @@ import styles from "./page.module.css";
 import RequestsOverview from "./components/RequestsOverview/RequestsOverview";
 import ButtonReserveCourt from "./components/ButtonReserveCourt/ButtonReserveCourt";
 import { useGetBookingsQuery } from "@/redux/api/bookingApi";
+import { useEffect } from "react";
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 
 export default function Home() {
-  const { data, isLoading, error } = useGetBookingsQuery();
+  const { data, isLoading, error, refetch } = useGetBookingsQuery();
+
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
+
   const newBookings = Array.isArray(data)
     ? data.filter((booking) => booking.status === "Pending")
     : [];
@@ -13,21 +20,29 @@ export default function Home() {
     ? data.filter((booking) => booking.status === "Acknowledged")
     : [];
 
+  if (error) return <p>Failed to load bookings.</p>;
+
   return (
     <div className={styles.homePageSection}>
-      {newBookings.length > 0 && (
-        <RequestsOverview
-          title={"New Bookings"}
-          status={"Pending"}
-          bookings={newBookings || []}
-        />
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          {newBookings.length > 0 && (
+            <RequestsOverview
+              title={"New Bookings"}
+              status={"Pending"}
+              bookings={newBookings}
+            />
+          )}
+          <RequestsOverview
+            title={"Acknowledged"}
+            status={"Acknowledged"}
+            bookings={acknowledgedBookings}
+          />
+          <ButtonReserveCourt />
+        </>
       )}
-      <RequestsOverview
-        title={"Acknowledged"}
-        status={"Acknowledged"}
-        bookings={acknowledgedBookings || []}
-      />
-      <ButtonReserveCourt />
     </div>
   );
 }

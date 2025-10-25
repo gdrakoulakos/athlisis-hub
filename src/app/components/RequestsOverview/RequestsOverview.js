@@ -1,6 +1,5 @@
 import styles from "./RequestsOverview.module.css";
 import ImageBookingType from "../ImageBookingType/ImageBookingType";
-import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 export default function RequestsOverview({ title, status, bookings }) {
   return (
@@ -22,7 +21,6 @@ export default function RequestsOverview({ title, status, bookings }) {
               </div>
             )}
             <section className={styles.requestsOverviewList}>
-              {bookings.length === 0 && <LoadingSpinner />}
               {bookings.map((booking, index) => (
                 <article key={index} className={styles.requestsOverviewItem}>
                   <ImageBookingType bookingType={booking.type} size={60} />
