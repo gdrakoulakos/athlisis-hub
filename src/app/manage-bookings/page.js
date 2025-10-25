@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 import ImageBookingType from "../components/ImageBookingType/ImageBookingType";
 import ResultPopUp from "../components/popUps/ResultPopUp/ResultPopUp";
 import { removeBooking } from "@/redux/features/bookingsSlice";
-import { displayConfirmationPopUp } from "@/redux/features/popUps/displayConfirmationPopUpSlice";
+import { displayConfirmationPopUp } from "@/redux/features/popUps/confirmationPopUpSlice";
 import { useGetBookingsQuery } from "@/redux/api/bookingApi";
 import { useState } from "react";
 import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/ConfirmationPopUp";

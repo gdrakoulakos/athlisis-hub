@@ -2,7 +2,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { bookingApi } from "./api/bookingApi";
 import bookingsReducer from "@/redux/features/bookingsSlice";
-import confirmationPopUpReducer from "@/redux/features/popUps/displayConfirmationPopUpSlice";
+import confirmationPopUpReducer from "@/redux/features/popUps/confirmationPopUpSlice";
 
 export const store = configureStore({
   reducer: {

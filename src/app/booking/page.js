@@ -5,7 +5,7 @@ import "react-calendar/dist/Calendar.css";
 import { useState } from "react";
 import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/ConfirmationPopUp";
 import ResultPopUp from "../components/popUps/ResultPopUp/ResultPopUp";
-import { displayConfirmationPopUp } from "@/redux/features/popUps/displayConfirmationPopUpSlice";
+import { displayConfirmationPopUp } from "@/redux/features/popUps/confirmationPopUpSlice";
 import { useDispatch } from "react-redux";
 
 export default function Booking() {

@@ -1,7 +1,7 @@
 "use client";
 import styles from "./ConfirmationPopUp.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { hideConfirmationPopUp } from "@/redux/features/popUps/displayConfirmationPopUpSlice";
+import { hideConfirmationPopUp } from "@/redux/features/popUps/confirmationPopUpSlice";
 
 export default function ConfirmationPopUp({
   bookingData,
