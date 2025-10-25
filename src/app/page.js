@@ -2,7 +2,7 @@
 import styles from "./page.module.css";
 import RequestsOverview from "./components/RequestsOverview/RequestsOverview";
 import ButtonReserveCourt from "./components/ButtonReserveCourt/ButtonReserveCourt";
-import { useGetBookingsQuery } from "@/store/bookingApi";
+import { useGetBookingsQuery } from "@/redux/api/bookingApi";
 
 export default function Home() {
   const { data, isLoading, error } = useGetBookingsQuery();
