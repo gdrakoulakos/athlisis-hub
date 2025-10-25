@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const confirmationPopUpSlice = createSlice({
-  name: "popUp",
+  name: "confirmationPopUp",
   initialState: {
     displayPopUp: false,
   },

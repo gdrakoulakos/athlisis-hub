@@ -1,19 +1,21 @@
 import styles from "./ResultPopUp.module.css";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { hideResultPopUp } from "@/redux/features/popUps/resultPopUpSlice";
 
-export default function ResultPopUp({
-  message,
-  setDisplayResultPopUp,
-  action,
-}) {
+export default function ResultPopUp({ message, action }) {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const displayPopUp = useSelector((state) => state.resultPopUp.displayPopUp);
 
   const handleOk = () => {
     if (action === "addBooking") {
       router.push("/");
     }
-    setDisplayResultPopUp(false);
+    dispatch(hideResultPopUp());
   };
+
+  if (!displayPopUp) return null;
 
   return (
     <div className={styles.resultPopUpContainer}>

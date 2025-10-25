@@ -6,6 +6,7 @@ import { useState } from "react";
 import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/ConfirmationPopUp";
 import ResultPopUp from "../components/popUps/ResultPopUp/ResultPopUp";
 import { displayConfirmationPopUp } from "@/redux/features/popUps/confirmationPopUpSlice";
+import { displayResultPopUp } from "@/redux/features/popUps/resultPopUpSlice";
 import { useDispatch } from "react-redux";
 
 export default function Booking() {
@@ -25,7 +26,6 @@ export default function Booking() {
   });
 
   const bookingTypeOptions = ["Friendly", "Tournament", "Party", "Other"];
-  const [displayResultPopUp, setDisplayResultPopUp] = useState(false);
 
   const timeOptions = [
     { label: "Select time", value: 0 },
@@ -91,7 +91,7 @@ export default function Booking() {
       body: JSON.stringify(newBooking),
     });
     if (res.ok) {
-      setDisplayResultPopUp(true);
+      dispatch(displayResultPopUp());
     }
   };
 
@@ -228,13 +228,10 @@ export default function Booking() {
             message={"Please confirm your booking"}
             action={bookingData.action}
           />
-          {displayResultPopUp && (
-            <ResultPopUp
-              message={"Booking added successfully"}
-              setDisplayResultPopUp={setDisplayResultPopUp}
-              action={bookingData.action}
-            />
-          )}
+          <ResultPopUp
+            message={"Booking added successfully"}
+            action={bookingData.action}
+          />
         </div>
       )}
     </>

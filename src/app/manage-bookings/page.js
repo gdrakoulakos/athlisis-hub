@@ -5,13 +5,13 @@ import ImageBookingType from "../components/ImageBookingType/ImageBookingType";
 import ResultPopUp from "../components/popUps/ResultPopUp/ResultPopUp";
 import { removeBooking } from "@/redux/features/bookingsSlice";
 import { displayConfirmationPopUp } from "@/redux/features/popUps/confirmationPopUpSlice";
+import { displayResultPopUp } from "@/redux/features/popUps/resultPopUpSlice";
 import { useGetBookingsQuery } from "@/redux/api/bookingApi";
 import { useState } from "react";
 import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/ConfirmationPopUp";
 
 export default function ManageBookings() {
   const dispatch = useDispatch();
-  const [displayResultPopUp, setDisplayResultPopUp] = useState(false);
   const [confirmationMessage, setConfirmationMessage] = useState("");
   const [bookingDataToDelete, setBookingDataToDelete] = useState({
     action: "deleteBooking",
@@ -35,7 +35,7 @@ export default function ManageBookings() {
       }
       await refetch();
       dispatch(removeBooking(id));
-      setDisplayResultPopUp(true);
+      dispatch(displayResultPopUp());
     } catch (error) {
       console.error("Error:", error);
     }
@@ -118,12 +118,7 @@ export default function ManageBookings() {
         action={bookingDataToDelete.action}
         deleteBooking={deleteBooking}
       />
-      {displayResultPopUp && (
-        <ResultPopUp
-          message={"Booking has been deleted successfully"}
-          setDisplayResultPopUp={setDisplayResultPopUp}
-        />
-      )}
+      <ResultPopUp message={"Booking has been deleted successfully"} />
     </div>
   );
 }

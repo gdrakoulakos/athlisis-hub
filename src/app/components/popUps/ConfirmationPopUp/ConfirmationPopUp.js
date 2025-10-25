@@ -11,7 +11,7 @@ export default function ConfirmationPopUp({
   deleteBooking,
 }) {
   const dispatch = useDispatch();
-  const displayPopUp = useSelector((state) => state.popUp.displayPopUp);
+  const displayPopUp = useSelector((state) => state.confirmationPopUp.displayPopUp);
 
   if (!displayPopUp) return null;
 
