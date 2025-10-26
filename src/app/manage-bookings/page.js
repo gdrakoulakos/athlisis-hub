@@ -69,11 +69,6 @@ export default function ManageBookings() {
     "Dec",
   ];
 
-  console.log(
-    "All statuses:",
-    sortedData?.map((b) => b.status)
-  );
-
   return (
     <div className={styles.manageBookingsSection}>
       <h2>Manage Bookings</h2>

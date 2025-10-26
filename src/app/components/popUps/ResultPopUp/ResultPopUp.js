@@ -18,9 +18,14 @@ export default function ResultPopUp({ message, action }) {
   if (!displayPopUp) return null;
 
   return (
-    <div className={styles.resultPopUpContainer}>
-      <h2>{message}</h2>
-      <button onClick={handleOk}>OK</button>
+    <div
+      className={styles.resultPopUpWrapper}
+      onClick={() => dispatch(hideResultPopUp())}
+    >
+      <div className={styles.resultPopUpContainer}>
+        <h2>{message}</h2>
+        <button onClick={handleOk}>OK</button>
+      </div>
     </div>
   );
 }

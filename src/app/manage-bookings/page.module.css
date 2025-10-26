@@ -1,8 +1,9 @@
 .manageBookingsSection {
-  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-top: 60px;
+  padding: 20px;
 }
 
 .cardsContainer {
@@ -114,29 +115,25 @@
   justify-content: space-evenly;
 }
 
-.deleteButton {
-  color: #ab1615;
+.buttonsContainer button {
+  padding: 10px;
   font-size: 16px;
-  background-color: #ffdfdb;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 3px -1px,
     rgba(0, 0, 0, 0.14) 1px 1px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 6px 0;
   box-sizing: border-box;
+}
+
+.deleteButton {
+  color: #ab1615;
+  background-color: #ffdfdb;
 }
 
 .editButton {
   color: #fd705c;
-  font-size: 16px;
   background-color: #ffdfdb;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 3px -1px,
-    rgba(0, 0, 0, 0.14) 1px 1px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 6px 0;
-  box-sizing: border-box;
 }
 
 .acknowledgeButton {
   color: #22976e;
-  font-size: 16px;
   background-color: #ccffe7;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 3px -1px,
-    rgba(0, 0, 0, 0.14) 1px 1px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 6px 0;
-  box-sizing: border-box;
 }

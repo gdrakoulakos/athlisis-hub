@@ -1,6 +1,8 @@
 .bookingBlock {
   display: flex;
   flex-direction: column;
+  margin-top: 60px;
+  padding: 20px;
 }
 
 .nameContainer,
@@ -11,4 +13,8 @@
 .durationSelectionContainer,
 .courtSelectionContainer {
   margin-bottom: 20px;
+}
+
+.submitButton {
+  color: white;
 }
