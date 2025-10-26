@@ -1,5 +1,6 @@
 import styles from "./RequestsOverview.module.css";
 import ImageBookingType from "../ImageBookingType/ImageBookingType";
+import { formatDate } from "@/utils/date";
 
 export default function RequestsOverview({ title, status, bookings }) {
   return (
@@ -27,9 +28,8 @@ export default function RequestsOverview({ title, status, bookings }) {
                   <div className={styles.requestsOverviewItemInfo}>
                     <div className={styles.requestsOverviewItemTopRow}>
                       <time className={styles.requestsOverviewItemDate}>
-                        {booking.date}
+                        {formatDate(booking.date)}
                       </time>{" "}
-                      &nbsp;-&nbsp;
                       <div className={styles.requestsOverviewItemName}>
                         {booking.name}
                       </div>

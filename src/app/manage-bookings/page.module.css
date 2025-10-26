@@ -7,27 +7,36 @@
 
 .cardsContainer {
   width: 100%;
-  border: solid #fd705c 1px;
   border-radius: 20px;
   box-sizing: border-box;
   overflow: hidden;
   margin-bottom: 20px;
 }
 
+.acknowledged {
+  border: 1px solid #22976e;
+}
+
+.pending {
+  border: 1px solid #fd705c;
+}
+
 .cardHeader {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
+  height: 110px;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
   box-sizing: border-box;
 }
 
-.headerLeftInfo {
+.headerUserInfo {
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .headerLeftItems {
@@ -35,11 +44,39 @@
   flex-direction: column;
 }
 
-.headerDate,
-.headerTime {
-  font-size: 15px;
+.headerName {
+  font-size: 18px;
+}
+
+.headerDate {
+  font-size: 16px;
   font-weight: 600;
   color: #8b8b8b;
+}
+.headerStatusContainer {
+  width: 100%;
+}
+
+.headerStatusInfo {
+  padding: 5px 10px;
+  font-size: 20px;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Acknowledged {
+  color: #22976e;
+  background-color: #ccffe7;
+  font-weight: 600;
+}
+
+.Pending {
+  color: #ab1615;
+  background-color: #ffdfdb;
+  font-weight: 600;
 }
 
 .detailsContainer {
@@ -79,18 +116,27 @@
 
 .deleteButton {
   color: #ab1615;
-  font-size: 14px;
+  font-size: 16px;
   background-color: #ffdfdb;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 3px -1px,
+    rgba(0, 0, 0, 0.14) 1px 1px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 6px 0;
+  box-sizing: border-box;
 }
 
 .editButton {
   color: #fd705c;
-  font-size: 14px;
+  font-size: 16px;
   background-color: #ffdfdb;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 3px -1px,
+    rgba(0, 0, 0, 0.14) 1px 1px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 6px 0;
+  box-sizing: border-box;
 }
 
 .acknowledgeButton {
   color: #22976e;
-  font-size: 14px;
+  font-size: 16px;
   background-color: #ccffe7;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 3px -1px,
+    rgba(0, 0, 0, 0.14) 1px 1px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 6px 0;
+  box-sizing: border-box;
 }

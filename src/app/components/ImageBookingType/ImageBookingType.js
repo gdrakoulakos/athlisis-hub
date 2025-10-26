@@ -6,7 +6,7 @@ export default function ImageBookingType({ bookingType, size }) {
     <figure className={styles.imageContainer}>
       <Image
         src={`/images/${bookingType}.png`}
-        alt="Tennis Icon"
+        alt={bookingType}
         width={size}
         height={size}
         loading="lazy"

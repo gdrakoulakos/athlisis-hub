@@ -7,6 +7,7 @@ import { removeBooking } from "@/redux/features/bookingsSlice";
 import { displayConfirmationPopUp } from "@/redux/features/popUps/confirmationPopUpSlice";
 import { displayResultPopUp } from "@/redux/features/popUps/resultPopUpSlice";
 import { useGetBookingsQuery } from "@/redux/api/bookingApi";
+import { formatDate } from "@/utils/date";
 import { useState } from "react";
 import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/ConfirmationPopUp";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
@@ -53,33 +54,68 @@ export default function ManageBookings() {
     dispatch(displayConfirmationPopUp());
   };
 
+  const monthsNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  console.log(
+    "All statuses:",
+    sortedData?.map((b) => b.status)
+  );
+
   return (
     <div className={styles.manageBookingsSection}>
       <h2>Manage Bookings</h2>
       {isLoading && <LoadingSpinner />}
       {sortedData?.map((booking) => (
-        <div key={booking.id} className={styles.cardsContainer}>
+        <div
+          key={booking.id}
+          className={`${styles.cardsContainer} ${
+            booking.status === "Acknowledged"
+              ? styles.acknowledged
+              : styles.pending
+          }`}
+        >
           <div className={styles.cardHeader}>
-            <div className={styles.headerLeftInfo}>
-              <ImageBookingType bookingType={booking.type} size={40} />
-              <div className={styles.headerLeftItems}>
-                <h4 className={styles.headerName}>{booking.name}</h4>
-                <div className={styles.headerDate}>{booking.created_at}</div>
+            <div className={styles.headerStatusContainer}>
+              <div
+                className={`${styles.headerStatusInfo} ${
+                  styles[booking.status]
+                }`}
+              >
+                {booking.status}
               </div>
             </div>
-            <div className={styles.headerRightInfo}>
-              <div className={styles.headerStatusInfo}>{booking.status}</div>
+            <div className={styles.headerUserInfo}>
+              <ImageBookingType bookingType={booking.type} size={60} />
+              <div className={styles.headerLeftItems}>
+                <h4 className={styles.headerName}>{booking.name}</h4>
+                <div className={styles.headerDate}>
+                  {formatDate(booking.created_at)}
+                </div>
+              </div>
             </div>
           </div>
           <div>
             <div className={styles.detailsContainer}>
               <div className={styles.date}>
                 <div>Date: </div>
-                <div>{booking.date}</div>
+                <div>{formatDate(booking.date)}</div>
               </div>
               <div className={styles.time}>
                 <div>Time: </div>
-                <div>{booking.time}</div>
+                <div>{booking.time.substring(0, 5)}</div>
               </div>
               <div className={styles.type}>
                 <div>Type: </div>
