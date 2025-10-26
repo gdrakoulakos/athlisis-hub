@@ -99,6 +99,16 @@ body {
     color: #fd705c;
   }
 
+  .react-calendar__tile:disabled {
+    background-color: white;
+  }
+
+  .react-calendar__navigation button:disabled {
+    background-color: white;
+    border-radius: 20px;
+    color: #ababab;
+  }
+
   button {
     background-color: #fd705c;
     border-radius: 10px;
