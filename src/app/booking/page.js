@@ -95,6 +95,7 @@ export default function Booking() {
       duration: bookingData.duration,
       phone: bookingData.phone,
       court: bookingData.court,
+      timestamp: new Date(),
     };
     const res = await fetch("/api/bookings", {
       method: "POST",

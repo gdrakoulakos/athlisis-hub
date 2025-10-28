@@ -3,6 +3,11 @@ import ImageBookingType from "../ImageBookingType/ImageBookingType";
 import { formatDate } from "@/utils/date";
 
 export default function RequestsOverview({ title, status, bookings }) {
+  const sortedBookings =
+    bookings
+      ?.slice()
+      .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)) || [];
+
   return (
     <>
       {bookings && (
@@ -22,7 +27,7 @@ export default function RequestsOverview({ title, status, bookings }) {
               </div>
             )}
             <section className={styles.requestsOverviewList}>
-              {bookings.map((booking, index) => (
+              {sortedBookings.map((booking, index) => (
                 <article key={index} className={styles.requestsOverviewItem}>
                   <ImageBookingType bookingType={booking.type} size={60} />
                   <div className={styles.requestsOverviewItemInfo}>

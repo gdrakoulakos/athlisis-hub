@@ -24,7 +24,7 @@ export default function ManageBookings() {
   const sortedData =
     data
       ?.slice()
-      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at)) || [];
+      .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)) || [];
 
   const deleteBooking = async (id) => {
     try {
