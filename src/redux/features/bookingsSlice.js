@@ -23,6 +23,13 @@ const bookingsSlice = createSlice({
       const { id } = action.payload;
       state.list = state.list.filter((item) => item.id !== id);
     },
+    acknowledgeBooking: (state, action) => {
+      const { id } = action.payload;
+      const booking = state.list.find((item) => item.id === id);
+      if (booking) {
+        booking.status = "Acknowledged";
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -39,5 +46,6 @@ const bookingsSlice = createSlice({
   },
 });
 
-export const { setBooking, removeBooking } = bookingsSlice.actions;
+export const { setBooking, removeBooking, acknowledgeBooking } =
+  bookingsSlice.actions;
 export default bookingsSlice.reducer;

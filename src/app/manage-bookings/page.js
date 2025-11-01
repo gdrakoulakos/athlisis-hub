@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./page.module.css";
 import ImageBookingType from "../components/ImageBookingType/ImageBookingType";
 import ResultPopUp from "../components/popUps/ResultPopUp/ResultPopUp";
-import { removeBooking } from "@/redux/features/bookingsSlice";
+import {
+  removeBooking,
+  acknowledgeBooking,
+} from "@/redux/features/bookingsSlice";
 import { displayConfirmationPopUp } from "@/redux/features/popUps/confirmationPopUpSlice";
 import { displayResultPopUp } from "@/redux/features/popUps/resultPopUpSlice";
 import {
@@ -21,6 +24,7 @@ import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 export default function ManageBookings() {
   const dispatch = useDispatch();
   const [confirmationMessage, setConfirmationMessage] = useState("");
+  const [resultMessage, setResultMessage] = useState("");
   const [bookingDataToDelete, setBookingDataToDelete] = useState({
     action: "deleteBooking",
   });
@@ -32,7 +36,7 @@ export default function ManageBookings() {
     (state) => state.loadingSpinner.loadingSpinner
   );
 
-  const deleteBooking = async (id) => {
+  const handleDeleteBooking = async (id) => {
     try {
       dispatch(displayLoadingSpinner());
       const res = await fetch("/api/bookings", {
@@ -48,6 +52,7 @@ export default function ManageBookings() {
         return;
       }
       await refetch();
+      setResultMessage("Booking has been deleted successfully");
       dispatch(removeBooking(id));
       dispatch(displayResultPopUp());
     } catch (error) {
@@ -58,7 +63,35 @@ export default function ManageBookings() {
     }
   };
 
-  const handleDelete = (booking) => {
+  const handleAcknowledgeBooking = async (id) => {
+    try {
+      dispatch(displayLoadingSpinner());
+      const res = await fetch("/api/bookings", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        console.error("Error acknowledging booking:", data.error);
+        return;
+      }
+
+      await refetch();
+      dispatch(acknowledgeBooking({ id }));
+      setResultMessage("Booking has been acknowledged successfully");
+      dispatch(displayResultPopUp());
+    } catch (error) {
+      console.error("Error:", error);
+      dispatch(hideLoadingSpinner());
+    } finally {
+      dispatch(hideLoadingSpinner());
+    }
+  };
+
+  const handleClickDelete = (booking) => {
     setBookingDataToDelete({ booking, action: "deleteBooking" });
     setConfirmationMessage("Are you sure you want to delete this booking?");
     dispatch(displayConfirmationPopUp());
@@ -133,13 +166,15 @@ export default function ManageBookings() {
               <div className={styles.buttonsContainer}>
                 <button
                   className={styles.deleteButton}
-                  onClick={() => handleDelete(booking)}
+                  onClick={() => handleClickDelete(booking)}
                 >
                   Delete
                 </button>
-                <button className={styles.editButton}>Edit</button>
                 {booking.status === "Pending" && (
-                  <button className={styles.acknowledgeButton}>
+                  <button
+                    className={styles.acknowledgeButton}
+                    onClick={() => handleAcknowledgeBooking(booking.id)}
+                  >
                     Acknowledge
                   </button>
                 )}
@@ -152,9 +187,9 @@ export default function ManageBookings() {
         message={confirmationMessage}
         bookingData={bookingDataToDelete.booking}
         action={bookingDataToDelete.action}
-        deleteBooking={deleteBooking}
+        handleDeleteBooking={handleDeleteBooking}
       />
-      <ResultPopUp message={"Booking has been deleted successfully"} />
+      <ResultPopUp message={resultMessage} />
     </div>
   );
 }

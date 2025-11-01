@@ -32,7 +32,7 @@ export default function Home() {
           className={styles.bookingCategoriesContainer}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.7 }}
         >
           {newBookings.length > 0 && (
             <RequestsOverview

@@ -117,23 +117,21 @@
 
 .buttonsContainer button {
   padding: 10px;
-  font-size: 16px;
+  font-size: 18px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 3px -1px,
     rgba(0, 0, 0, 0.14) 1px 1px 10px 0, rgba(0, 0, 0, 0.12) 0 1px 6px 0;
   box-sizing: border-box;
+  letter-spacing: 0.3px;
 }
 
 .deleteButton {
   color: #ab1615;
   background-color: #ffdfdb;
-}
-
-.editButton {
-  color: #fd705c;
-  background-color: #ffdfdb;
+  border: 1px solid #e6b3ae;
 }
 
 .acknowledgeButton {
   color: #22976e;
   background-color: #ccffe7;
+  border: 1px solid #9be8c7;
 }

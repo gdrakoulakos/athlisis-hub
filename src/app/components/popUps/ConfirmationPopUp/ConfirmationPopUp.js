@@ -9,7 +9,7 @@ export default function ConfirmationPopUp({
   addBooking,
   message,
   action,
-  deleteBooking,
+  handleDeleteBooking,
 }) {
   const dispatch = useDispatch();
   const displayPopUp = useSelector(
@@ -22,7 +22,7 @@ export default function ConfirmationPopUp({
     if (action === "addBooking") {
       addBooking();
     } else if (action === "deleteBooking") {
-      deleteBooking(bookingData.id);
+      handleDeleteBooking(bookingData.id);
     }
     dispatch(hideConfirmationPopUp());
   };

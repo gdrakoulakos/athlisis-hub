@@ -137,7 +137,7 @@ export default function Booking() {
           className={styles.bookingBlock}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.5 }}
         >
           <h1>Booking</h1>
           <form onSubmit={handleSubmit(onSubmit)}>

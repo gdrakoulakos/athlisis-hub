@@ -63,3 +63,37 @@ export async function DELETE(req) {
     });
   }
 }
+
+export async function PUT(req) {
+  try {
+    const { id } = await req.json();
+
+    if (!id) {
+      return new Response(JSON.stringify({ error: "Missing booking ID" }), {
+        status: 400,
+      });
+    }
+
+    // Update the booking’s status to "Acknowledged"
+    const { data, error } = await supabase
+      .from("bookings")
+      .update({ status: "Acknowledged" })
+      .eq("id", id)
+      .select();
+
+    if (error) {
+      return new Response(JSON.stringify({ error: error.message }), {
+        status: 500,
+      });
+    }
+
+    return Response.json({
+      message: `Booking with ID ${id} acknowledged successfully`,
+      booking: data[0],
+    });
+  } catch (err) {
+    return new Response(JSON.stringify({ error: err.message }), {
+      status: 500,
+    });
+  }
+}
