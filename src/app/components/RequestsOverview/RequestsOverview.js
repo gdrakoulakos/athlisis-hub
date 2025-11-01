@@ -32,7 +32,7 @@ export default function RequestsOverview({ title, status, bookings }) {
                     <div className={styles.requestsOverviewItemTopRow}>
                       <time className={styles.requestsOverviewItemDate}>
                         {formatDate(booking.date)}
-                      </time>{" "}
+                      </time>
                       <div className={styles.requestsOverviewItemName}>
                         {booking.name}
                       </div>

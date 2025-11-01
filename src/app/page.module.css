@@ -2,11 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 60px;
-  padding: 20px;
+  margin-top: 70px;
+  padding: 25px;
 }
 
 .bookingCategoriesContainer {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
