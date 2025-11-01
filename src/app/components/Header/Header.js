@@ -17,9 +17,7 @@ export default function Header() {
   const headerOptions = [
     { name: "Home", path: "/" },
     { name: "Booking", path: "/booking" },
-    { name: "Groups", path: "/groups" },
     { name: "Manage Bookings", path: "/manage-bookings" },
-    { name: "Calendar", path: "/calendar" },
   ];
 
   return (

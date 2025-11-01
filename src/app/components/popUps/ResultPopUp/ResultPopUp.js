@@ -24,7 +24,7 @@ export default function ResultPopUp({ message, action }) {
       onClick={() => dispatch(hideResultPopUp())}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.3 }}
     >
       <div className={styles.resultPopUpContainer}>
         <h2>{message}</h2>

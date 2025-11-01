@@ -1,11 +1,15 @@
 "use client";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./page.module.css";
 import ImageBookingType from "../components/ImageBookingType/ImageBookingType";
 import ResultPopUp from "../components/popUps/ResultPopUp/ResultPopUp";
 import { removeBooking } from "@/redux/features/bookingsSlice";
 import { displayConfirmationPopUp } from "@/redux/features/popUps/confirmationPopUpSlice";
 import { displayResultPopUp } from "@/redux/features/popUps/resultPopUpSlice";
+import {
+  displayLoadingSpinner,
+  hideLoadingSpinner,
+} from "@/redux/features/loadingSpinnerSlice";
 import { useGetBookingsQuery } from "@/redux/api/bookingApi";
 import { formatDate, formatDateAndTime } from "@/utils/date";
 import { sortByStatusAndDate } from "@/utils/sort";
@@ -24,9 +28,13 @@ export default function ManageBookings() {
   const { data, isLoading, error, refetch } = useGetBookingsQuery();
 
   const sortedData = sortByStatusAndDate(data);
+  const showLoadingSpinner = useSelector(
+    (state) => state.loadingSpinner.loadingSpinner
+  );
 
   const deleteBooking = async (id) => {
     try {
+      dispatch(displayLoadingSpinner());
       const res = await fetch("/api/bookings", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
@@ -44,6 +52,9 @@ export default function ManageBookings() {
       dispatch(displayResultPopUp());
     } catch (error) {
       console.error("Error:", error);
+      dispatch(hideLoadingSpinner());
+    } finally {
+      dispatch(hideLoadingSpinner());
     }
   };
 
@@ -56,7 +67,7 @@ export default function ManageBookings() {
   return (
     <div className={styles.manageBookingsSection}>
       <h2>Manage Bookings</h2>
-      {isLoading && <LoadingSpinner />}
+      {(isLoading || showLoadingSpinner) && <LoadingSpinner />}
       {sortedData?.map((booking) => (
         <motion.div
           key={booking.id}

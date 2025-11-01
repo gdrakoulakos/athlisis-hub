@@ -33,7 +33,7 @@ export default function ConfirmationPopUp({
       onClick={() => dispatch(hideConfirmationPopUp())}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.3 }}
     >
       <div className={styles.confirmationPopUpContainer}>
         <h2>{message}</h2>

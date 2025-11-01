@@ -9,7 +9,12 @@ import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/Confirmati
 import ResultPopUp from "../components/popUps/ResultPopUp/ResultPopUp";
 import { displayConfirmationPopUp } from "@/redux/features/popUps/confirmationPopUpSlice";
 import { displayResultPopUp } from "@/redux/features/popUps/resultPopUpSlice";
-import { useDispatch } from "react-redux";
+import {
+  displayLoadingSpinner,
+  hideLoadingSpinner,
+} from "@/redux/features/loadingSpinnerSlice";
+import { useDispatch, useSelector } from "react-redux";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 export default function Booking() {
   const dispatch = useDispatch();
@@ -23,6 +28,10 @@ export default function Booking() {
   const formattedToday = `${today.getFullYear()}-${String(
     today.getMonth() + 1
   ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+
+  const showLoadingSpinner = useSelector(
+    (state) => state.loadingSpinner.loadingSpinner
+  );
 
   const [bookingData, setBookingData] = useState({
     action: "addBooking",
@@ -86,25 +95,33 @@ export default function Booking() {
   };
 
   const addBooking = async () => {
-    const newBooking = {
-      date: bookingData.date,
-      time: bookingData.time,
-      name: bookingData.name,
-      type: bookingData.type,
-      persons: bookingData.persons,
-      status: bookingData.status,
-      duration: bookingData.duration,
-      phone: bookingData.phone,
-      court: bookingData.court,
-      timestamp: new Date(),
-    };
-    const res = await fetch("/api/bookings", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newBooking),
-    });
-    if (res.ok) {
-      dispatch(displayResultPopUp());
+    try {
+      dispatch(displayLoadingSpinner());
+      const newBooking = {
+        date: bookingData.date,
+        time: bookingData.time,
+        name: bookingData.name,
+        type: bookingData.type,
+        persons: bookingData.persons,
+        status: bookingData.status,
+        duration: bookingData.duration,
+        phone: bookingData.phone,
+        court: bookingData.court,
+        timestamp: new Date(),
+      };
+      const res = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newBooking),
+      });
+      if (res.ok) {
+        dispatch(displayResultPopUp());
+      }
+    } catch (error) {
+      console.error("Error adding booking:", error);
+      dispatch(hideLoadingSpinner());
+    } finally {
+      dispatch(hideLoadingSpinner());
     }
   };
 
@@ -114,12 +131,13 @@ export default function Booking() {
 
   return (
     <>
+      {showLoadingSpinner && <LoadingSpinner />}
       {bookingData && (
         <motion.div
           className={styles.bookingBlock}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3 }}
         >
           <h1>Booking</h1>
           <form onSubmit={handleSubmit(onSubmit)}>

@@ -5,6 +5,7 @@ import bookingsReducer from "@/redux/features/bookingsSlice";
 import confirmationPopUpReducer from "@/redux/features/popUps/confirmationPopUpSlice";
 import resultPopUpReducer from "@/redux/features/popUps/resultPopUpSlice";
 import headerMenuReducer from "@/redux/features/headerMenuSlice";
+import loadingSpinnerReducer from "@/redux/features/loadingSpinnerSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     confirmationPopUp: confirmationPopUpReducer,
     resultPopUp: resultPopUpReducer,
     headerMenu: headerMenuReducer,
+    loadingSpinner: loadingSpinnerReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(bookingApi.middleware),
