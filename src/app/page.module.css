@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 70px;
-  padding: 25px;
+  margin-top: 60px;
+  padding: 30px;
 }
 
 .bookingCategoriesContainer {
