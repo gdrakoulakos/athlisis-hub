@@ -4,6 +4,7 @@ import RequestsOverview from "./components/RequestsOverview/RequestsOverview";
 import ButtonReserveCourt from "./components/ButtonReserveCourt/ButtonReserveCourt";
 import { useGetBookingsQuery } from "@/redux/api/bookingApi";
 import { useEffect } from "react";
+import { motion } from "motion/react";
 import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 
 export default function Home() {
@@ -27,7 +28,12 @@ export default function Home() {
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        <>
+        <motion.div
+          className={styles.bookingCategoriesContainer}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
           {newBookings.length > 0 && (
             <RequestsOverview
               title={"New Bookings"}
@@ -41,7 +47,7 @@ export default function Home() {
             bookings={acknowledgedBookings}
           />
           <ButtonReserveCourt />
-        </>
+        </motion.div>
       )}
     </div>
   );

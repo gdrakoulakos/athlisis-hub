@@ -5,3 +5,9 @@
   margin-top: 60px;
   padding: 20px;
 }
+
+.bookingCategoriesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

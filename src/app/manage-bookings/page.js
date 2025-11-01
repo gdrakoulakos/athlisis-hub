@@ -10,6 +10,7 @@ import { useGetBookingsQuery } from "@/redux/api/bookingApi";
 import { formatDate, formatDateAndTime } from "@/utils/date";
 import { sortByStatusAndDate } from "@/utils/sort";
 import { useState } from "react";
+import { motion } from "motion/react";
 import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/ConfirmationPopUp";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
@@ -57,13 +58,16 @@ export default function ManageBookings() {
       <h2>Manage Bookings</h2>
       {isLoading && <LoadingSpinner />}
       {sortedData?.map((booking) => (
-        <div
+        <motion.div
           key={booking.id}
           className={`${styles.cardsContainer} ${
             booking.status === "Acknowledged"
               ? styles.acknowledged
               : styles.pending
           }`}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
         >
           <div className={styles.cardHeader}>
             <div className={styles.headerStatusContainer}>
@@ -131,7 +135,7 @@ export default function ManageBookings() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       ))}
       <ConfirmationPopUp
         message={confirmationMessage}

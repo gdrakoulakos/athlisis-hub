@@ -1,5 +1,6 @@
 "use client";
 import styles from "./ConfirmationPopUp.module.css";
+import { motion } from "motion/react";
 import { useDispatch, useSelector } from "react-redux";
 import { hideConfirmationPopUp } from "@/redux/features/popUps/confirmationPopUpSlice";
 
@@ -27,9 +28,12 @@ export default function ConfirmationPopUp({
   };
 
   return (
-    <div
+    <motion.div
       className={styles.confirmationPopUpWrapper}
       onClick={() => dispatch(hideConfirmationPopUp())}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
     >
       <div className={styles.confirmationPopUpContainer}>
         <h2>{message}</h2>
@@ -53,6 +57,6 @@ export default function ConfirmationPopUp({
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

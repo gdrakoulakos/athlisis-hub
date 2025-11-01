@@ -3,6 +3,7 @@ import Calendar from "react-calendar";
 import styles from "./page.module.css";
 import "react-calendar/dist/Calendar.css";
 import { useState } from "react";
+import { motion } from "motion/react";
 import { useForm } from "react-hook-form";
 import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/ConfirmationPopUp";
 import ResultPopUp from "../components/popUps/ResultPopUp/ResultPopUp";
@@ -114,7 +115,12 @@ export default function Booking() {
   return (
     <>
       {bookingData && (
-        <div className={styles.bookingBlock}>
+        <motion.div
+          className={styles.bookingBlock}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
           <h1>Booking</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className={styles.nameContainer}>
@@ -283,7 +289,7 @@ export default function Booking() {
               action={bookingData.action}
             />
           </form>
-        </div>
+        </motion.div>
       )}
     </>
   );
