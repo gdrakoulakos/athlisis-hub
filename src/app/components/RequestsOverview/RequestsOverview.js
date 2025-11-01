@@ -1,12 +1,10 @@
 import styles from "./RequestsOverview.module.css";
 import ImageBookingType from "../ImageBookingType/ImageBookingType";
 import { formatDate } from "@/utils/date";
+import { sortByDate } from "@/utils/sort";
 
 export default function RequestsOverview({ title, status, bookings }) {
-  const sortedBookings =
-    bookings
-      ?.slice()
-      .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)) || [];
+  const sortedBookings = sortByDate(bookings);
 
   return (
     <>

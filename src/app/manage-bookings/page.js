@@ -7,7 +7,8 @@ import { removeBooking } from "@/redux/features/bookingsSlice";
 import { displayConfirmationPopUp } from "@/redux/features/popUps/confirmationPopUpSlice";
 import { displayResultPopUp } from "@/redux/features/popUps/resultPopUpSlice";
 import { useGetBookingsQuery } from "@/redux/api/bookingApi";
-import { formatDate } from "@/utils/date";
+import { formatDate, formatDateAndTime } from "@/utils/date";
+import { sortByStatusAndDate } from "@/utils/sort";
 import { useState } from "react";
 import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/ConfirmationPopUp";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
@@ -21,10 +22,7 @@ export default function ManageBookings() {
 
   const { data, isLoading, error, refetch } = useGetBookingsQuery();
 
-  const sortedData =
-    data
-      ?.slice()
-      .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)) || [];
+  const sortedData = sortByStatusAndDate(data);
 
   const deleteBooking = async (id) => {
     try {
@@ -54,21 +52,6 @@ export default function ManageBookings() {
     dispatch(displayConfirmationPopUp());
   };
 
-  const monthsNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
   return (
     <div className={styles.manageBookingsSection}>
       <h2>Manage Bookings</h2>
@@ -97,7 +80,7 @@ export default function ManageBookings() {
               <div className={styles.headerLeftItems}>
                 <h4 className={styles.headerName}>{booking.name}</h4>
                 <div className={styles.headerDate}>
-                  {formatDate(booking.created_at)}
+                  {formatDateAndTime(booking.timestamp)}
                 </div>
               </div>
             </div>
@@ -105,7 +88,7 @@ export default function ManageBookings() {
           <div>
             <div className={styles.detailsContainer}>
               <div className={styles.date}>
-                <div>Date: </div>
+                <div>Reserved for: </div>
                 <div>{formatDate(booking.date)}</div>
               </div>
               <div className={styles.time}>
