@@ -140,7 +140,10 @@ export default function Booking() {
           transition={{ duration: 0.5 }}
         >
           <h1>Booking</h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form
+            className={styles.formContainer}
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div className={styles.nameContainer}>
               <h3>Name:</h3>
               <input

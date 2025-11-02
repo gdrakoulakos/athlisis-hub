@@ -80,14 +80,14 @@
 }
 
 .requestsOverviewItemTopRow time {
-  width: 95px;
+  width: 45%;
 }
 
 .requestsOverviewItemName {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  width: 120px;
+  width: 50%;
 }
 
 .requestsOverviewItemInfo {

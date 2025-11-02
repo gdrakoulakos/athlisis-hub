@@ -5,14 +5,10 @@
   padding: 20px;
 }
 
-.nameContainer,
-.phoneContainer,
-.bookingTypeContainer,
-.personsContainer,
-.dateSelectionContainer,
-.durationSelectionContainer,
-.courtSelectionContainer {
-  margin-bottom: 20px;
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .submitButton {
