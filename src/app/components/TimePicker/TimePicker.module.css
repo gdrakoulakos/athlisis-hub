@@ -1,0 +1,30 @@
+.timePickerContainerAll {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.timePickerMoringContainer,
+.timePickerAfternoonContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.timePickerOptions {
+  width: 100%;
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  background-color: #ffe9e6;
+  border-radius: 10px;
+}
+
+.timePicked {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 4px;
+  font-size: 13px;
+}

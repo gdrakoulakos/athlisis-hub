@@ -15,6 +15,7 @@ import {
 } from "@/redux/features/loadingSpinnerSlice";
 import { useDispatch, useSelector } from "react-redux";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
+import TimePicker from "../components/TimePicker/TimePicker";
 
 export default function Booking() {
   const dispatch = useDispatch();
@@ -248,6 +249,7 @@ export default function Booking() {
                 minDate={new Date()}
               />
             </div>
+            <TimePicker />
             <div className={styles.timeContainer}>
               <h3>Time:</h3>
               <select
