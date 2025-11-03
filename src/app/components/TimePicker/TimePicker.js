@@ -40,7 +40,9 @@ export default function TimePicker() {
           {timeOptionsMoring.map((option) => (
             <div
               key={option.value}
-              className={styles.timePicked}
+              className={`${styles.timePicked} ${
+                selectedTime.includes(option.value) ? styles.selected : ""
+              }`}
               onClick={() => handleTimePickerClick(option.value)}
             >
               {option.label}
@@ -55,7 +57,10 @@ export default function TimePicker() {
           {timeOptionsAfternoon.map((option) => (
             <div
               key={option.value}
-              className={styles.timePicked}
+              id={option.value}
+              className={`${styles.timePicked} ${
+                selectedTime.includes(option.value) ? styles.selected : ""
+              }`}
               onClick={() => handleTimePickerClick(option.value)}
             >
               {option.label}

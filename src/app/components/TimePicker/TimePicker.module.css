@@ -28,3 +28,8 @@
   padding: 10px 4px;
   font-size: 13px;
 }
+
+.selected {
+  background-color: #fd705c;
+  color: white;
+}
