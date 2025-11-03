@@ -17,3 +17,8 @@ export const formatDateAndTime = (dateString) => {
     minute: "2-digit",
   });
 };
+
+export const formatTime = (timeString) => {
+  if (!timeString) return "";
+  return timeString.slice(0, 5);
+};

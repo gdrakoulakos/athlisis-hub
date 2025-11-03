@@ -1,5 +1,5 @@
 .timePickerContainerAll {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 10px;
@@ -17,8 +17,8 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  background-color: #ffe9e6;
-  border-radius: 10px;
+  background-color: #ccffe7;
+  border: solid 1px #afffda;
 }
 
 .timePicked {
@@ -32,4 +32,9 @@
 .selected {
   background-color: #fd705c;
   color: white;
+  border: solid 1px #fd705c;
+}
+
+.timeSummary p {
+  font-size: 16px;
 }

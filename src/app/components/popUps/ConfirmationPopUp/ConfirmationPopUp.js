@@ -3,6 +3,7 @@ import styles from "./ConfirmationPopUp.module.css";
 import { motion } from "motion/react";
 import { useDispatch, useSelector } from "react-redux";
 import { hideConfirmationPopUp } from "@/redux/features/popUps/confirmationPopUpSlice";
+import { formatDate, formatTime } from "@/utils/date";
 
 export default function ConfirmationPopUp({
   bookingData,
@@ -41,8 +42,8 @@ export default function ConfirmationPopUp({
         <p>Phone: {bookingData.phone}</p>
         <p>Booking Type: {bookingData.type}</p>
         <p>Persons: {bookingData.persons}</p>
-        <p>Date: {bookingData?.date}</p>
-        <p>Time: {bookingData.time}</p>
+        <p>Date: {formatDate(bookingData?.date)}</p>
+        <p>Time: {formatTime(bookingData.time)}</p>
         <p>Duration: {bookingData.duration} hours</p>
         <p>Court: Court {bookingData.court}</p>
         <div className={styles.buttonContainer}>

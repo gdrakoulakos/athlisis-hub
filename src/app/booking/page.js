@@ -38,44 +38,18 @@ export default function Booking() {
     action: "addBooking",
     date: formattedToday,
     duration: 0,
-    court: 0,
+    court: 1,
     name: "",
     phone: "",
     persons: 4,
     type: "Friendly",
-    time: "9:00:00",
+    time: "",
     status: "Pending",
   });
 
+  console.log("bookingData", bookingData);
+
   const bookingTypeOptions = ["Friendly", "Tournament", "Party", "Other"];
-
-  const timeOptions = [
-    { label: "Select time", value: 0 },
-    { label: "8:00", value: "8:00:00" },
-    { label: "9:00", value: "9:00:00" },
-    { label: "10:00", value: "10:00:00" },
-    { label: "11:00", value: "11:00:00" },
-    { label: "12:00", value: "12:00:00" },
-    { label: "13:00", value: "13:00:00" },
-    { label: "14:00", value: "14:00:00" },
-    { label: "17:00", value: "17:00:00" },
-    { label: "18:00", value: "18:00:00" },
-    { label: "19:00", value: "19:00:00" },
-    { label: "20:00", value: "20:00:00" },
-    { label: "21:00", value: "21:00:00" },
-  ];
-
-  const durationOptions = [
-    { label: "Select time", value: 0 },
-    { label: "1 hour", value: 1 },
-    { label: "2 hours", value: 2 },
-    { label: "3 hours", value: 3 },
-    { label: "4 hours", value: 4 },
-    { label: "5 hours", value: 5 },
-    { label: "6 hours", value: 6 },
-    { label: "7 hours", value: 7 },
-    { label: "8 hours", value: 8 },
-  ];
 
   const courtOptions = [
     { label: "Select the court", value: 0 },
@@ -249,39 +223,7 @@ export default function Booking() {
                 minDate={new Date()}
               />
             </div>
-            <TimePicker />
-            <div className={styles.timeContainer}>
-              <h3>Time:</h3>
-              <select
-                className={styles.timeOptionsContainer}
-                name="time"
-                id="time-select"
-                value={bookingData.time}
-                onChange={handleChange}
-              >
-                {timeOptions.map((time, index) => (
-                  <option key={index} value={time.value}>
-                    {time.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className={styles.durationSelectionContainer}>
-              <h3>Duration:</h3>
-              <select
-                className={styles.durationOptionsContainer}
-                name="duration"
-                id="duration-select"
-                value={bookingData.duration}
-                onChange={handleChange}
-              >
-                {durationOptions.map((option, index) => (
-                  <option key={index} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <TimePicker handleChange={handleChange} />
             <div className={styles.courtSelectionContainer}>
               <h3>Court:</h3>
               <select

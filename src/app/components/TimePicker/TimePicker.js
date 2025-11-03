@@ -2,12 +2,11 @@
 import { useState } from "react";
 import styles from "./TimePicker.module.css";
 
-export default function TimePicker() {
+export default function TimePicker({ handleChange }) {
   const [selectedTime, setSelectedTime] = useState([]);
-  const [timeClicked, setTimeClicked] = useState(false);
 
-  const timeOptionsMoring = [
-    { label: "09:00", value: "9:00:00" },
+  const timeOptions = [
+    { label: "09:00", value: "09:00:00" },
     { label: "10:00", value: "10:00:00" },
     { label: "11:00", value: "11:00:00" },
     { label: "12:00", value: "12:00:00" },
@@ -15,29 +14,72 @@ export default function TimePicker() {
     { label: "14:00", value: "14:00:00" },
     { label: "15:00", value: "15:00:00" },
   ];
-  const timeOptionsAfternoon = [
-    { label: "17:00", value: "17:00:00" },
-    { label: "18:00", value: "18:00:00" },
-    { label: "19:00", value: "19:00:00" },
-    { label: "20:00", value: "20:00:00" },
-    { label: "21:00", value: "21:00:00" },
-    { label: "22:00", value: "22:00:00" },
-    { label: "23:00", value: "23:00:00" },
-  ];
 
   const handleTimePickerClick = (value) => {
-    setSelectedTime((prev) => [...prev, value]);
+    // If no times selected yet
+    if (selectedTime.length === 0) {
+      setSelectedTime([value]);
+
+      // Send start time up
+      handleChange({
+        target: { name: "time", value },
+      });
+      handleChange({
+        target: { name: "duration", value: 0 },
+      });
+
+      return;
+    }
+
+    // If one time selected -> select range between first and second
+    if (selectedTime.length === 1) {
+      const first = selectedTime[0];
+      const allValues = timeOptions.map((t) => t.value);
+      const startIndex = allValues.indexOf(first);
+      const endIndex = allValues.indexOf(value);
+
+      if (startIndex === -1 || endIndex === -1) return;
+
+      const [min, max] =
+        startIndex < endIndex ? [startIndex, endIndex] : [endIndex, startIndex];
+
+      const range = allValues.slice(min, max + 1);
+      setSelectedTime(range);
+
+      // Calculate total hours
+      const totalHours = range.length > 1 ? range.length - 1 : 0;
+
+      // Send updates to parent
+      handleChange({
+        target: { name: "time", value: range[0] },
+      });
+      handleChange({
+        target: { name: "duration", value: totalHours },
+      });
+
+      return;
+    }
+
+    // If more than one selected, reset selection
+    setSelectedTime([value]);
+    handleChange({
+      target: { name: "time", value },
+    });
+    handleChange({
+      target: { name: "duration", value: 0 },
+    });
   };
 
-  console.log("selectedTime", selectedTime);
+  const totalHours = selectedTime.length > 1 ? selectedTime.length - 1 : 0;
+
+  console.log("selected", selectedTime);
 
   return (
     <div className={styles.timePickerContainerAll}>
       <div className={styles.timePickerMoringContainer}>
         <h3>Select the time range:</h3>
-        <h4>Morning</h4>
         <div className={styles.timePickerOptions}>
-          {timeOptionsMoring.map((option) => (
+          {timeOptions.map((option) => (
             <div
               key={option.value}
               className={`${styles.timePicked} ${
@@ -50,23 +92,13 @@ export default function TimePicker() {
           ))}
         </div>
       </div>
-
-      <div className={styles.timePickerAfternoonContainer}>
-        <h4>Afternoon</h4>
-        <div className={styles.timePickerOptions}>
-          {timeOptionsAfternoon.map((option) => (
-            <div
-              key={option.value}
-              id={option.value}
-              className={`${styles.timePicked} ${
-                selectedTime.includes(option.value) ? styles.selected : ""
-              }`}
-              onClick={() => handleTimePickerClick(option.value)}
-            >
-              {option.label}
-            </div>
-          ))}
-        </div>
+      <div className={styles.timeSummary}>
+        <p>Start time: {selectedTime[0]}</p>
+        <p>
+          End time:
+          {selectedTime.length < 2 ? "" : selectedTime[selectedTime.length - 1]}
+        </p>
+        <p>Total Duration: {totalHours} hours</p>
       </div>
     </div>
   );
