@@ -26,6 +26,10 @@ export default function Booking() {
   } = useForm();
 
   const today = new Date();
+  const now = new Date();
+  const localWithOffset = now.toLocaleString("sv-SE", {
+    timeZoneName: "short",
+  });
   const formattedToday = `${today.getFullYear()}-${String(
     today.getMonth() + 1
   ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
@@ -82,7 +86,7 @@ export default function Booking() {
         duration: bookingData.duration,
         phone: bookingData.phone,
         court: bookingData.court,
-        timestamp: new Date(),
+        timestamp: localWithOffset,
       };
       const res = await fetch("/api/bookings", {
         method: "POST",
