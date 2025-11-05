@@ -15,6 +15,8 @@
   position: relative;
   width: 100%;
   margin-top: 5px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .timePickerOptions {
@@ -23,10 +25,8 @@
   justify-content: space-between;
   flex-direction: row;
   background-color: #ffdfdb;
-  border-radius: 10px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  border: solid 1px #fd705c;
 }
 
 .timePickerWrapper::after {
@@ -45,22 +45,14 @@
   border-radius: 0 10px 10px 0;
   z-index: 2;
 }
-
 .timePickerWrapper::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 40px;
-  height: 100%;
+  inset: 0;
+  border: 1px solid #fd705c;
+  border-radius: 10px;
   pointer-events: none;
-  background: linear-gradient(
-    to right,
-    rgba(255, 223, 219, 1),
-    rgba(255, 223, 219, 0)
-  );
-  border-radius: 10px 0 0 10px;
-  z-index: 2;
+  z-index: 3; 
 }
 
 .timePicked {
@@ -72,8 +64,7 @@
   transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
 }
 
-.timePickerOptions div:last-child,
-.timePickerOptions div:first-child {
+.timePickerOptions div:last-child {
   position: relative;
   z-index: 4;
 }
