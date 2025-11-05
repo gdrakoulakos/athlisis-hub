@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import styles from "./TimePicker.module.css";
+import { formatTime } from "@/utils/date";
 
 export default function TimePicker({ handleChange }) {
   const [selectedTime, setSelectedTime] = useState([]);
@@ -100,10 +101,12 @@ export default function TimePicker({ handleChange }) {
         </div>
       </div>
       <div className={styles.timeSummary}>
-        <p>Start time: {selectedTime[0]}</p>
+        <p>Start time: {formatTime(selectedTime[0])}</p>
         <p>
           End time:
-          {selectedTime.length < 2 ? "" : selectedTime[selectedTime.length - 1]}
+          {selectedTime.length < 2
+            ? ""
+            : formatTime(selectedTime[selectedTime.length - 1])}
         </p>
         <p>Total Duration: {totalHours} hours</p>
       </div>
