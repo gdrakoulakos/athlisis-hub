@@ -86,18 +86,20 @@ export default function TimePicker({ handleChange }) {
     <div className={styles.timePickerContainerAll}>
       <div className={styles.timePickerMoringContainer}>
         <h3>Select the time range:</h3>
-        <div className={styles.timePickerOptions}>
-          {timeOptions.map((option) => (
-            <div
-              key={option.value}
-              className={`${styles.timePicked} ${
-                selectedTime.includes(option.value) ? styles.selected : ""
-              }`}
-              onClick={() => handleTimePickerClick(option.value)}
-            >
-              {option.label}
-            </div>
-          ))}
+        <div class={styles.timePickerWrapper}>
+          <div className={styles.timePickerOptions}>
+            {timeOptions.map((option) => (
+              <div
+                key={option.value}
+                className={`${styles.timePicked} ${
+                  selectedTime.includes(option.value) ? styles.selected : ""
+                }`}
+                onClick={() => handleTimePickerClick(option.value)}
+              >
+                {option.label}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <div className={styles.timeSummary}>

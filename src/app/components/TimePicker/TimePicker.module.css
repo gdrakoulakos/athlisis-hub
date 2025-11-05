@@ -11,30 +11,53 @@
   flex-direction: column;
 }
 
-.timePickerOptions {
+.timePickerWrapper {
+  position: relative;
   width: 100%;
   margin-top: 5px;
+}
+
+.timePickerOptions {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  background-color: #ccffe7;
-  border: solid 1px #afffda;
+  background-color: #ffdfdb;
   border-radius: 10px;
   overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.timePickerWrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(
+    to left,
+    rgba(255, 223, 219, 1),
+    rgba(255, 223, 219, 0)
+  );
+  border-radius: 0 10px 10px 0;
+  z-index: 2;
 }
 
 .timePicked {
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 10px 4px;
-  font-size: 13px;
+  padding: 15px;
+  font-size: 14px;
   transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
 }
 
 .selected {
   background-color: #fd705c;
   color: white;
+  z-index: 3;
 }
 
 .timeSummary p {
