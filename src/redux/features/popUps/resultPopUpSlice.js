@@ -4,13 +4,16 @@ const resultPopUpSlice = createSlice({
   name: "resultPopUp",
   initialState: {
     displayPopUp: false,
+    message: "",
   },
   reducers: {
-    displayResultPopUp: (state) => {
+    displayResultPopUp: (state, action) => {
       state.displayPopUp = true;
+      state.message = action.payload || "";
     },
     hideResultPopUp: (state) => {
       state.displayPopUp = false;
+      state.message = "";
     },
   },
 });

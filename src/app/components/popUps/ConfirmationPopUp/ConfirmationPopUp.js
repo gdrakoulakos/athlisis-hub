@@ -8,7 +8,6 @@ import { formatDate, formatTime } from "@/utils/date";
 export default function ConfirmationPopUp({
   bookingData,
   addBooking,
-  message,
   action,
   handleDeleteBooking,
 }) {
@@ -16,6 +15,7 @@ export default function ConfirmationPopUp({
   const displayPopUp = useSelector(
     (state) => state.confirmationPopUp.displayPopUp
   );
+  const message = useSelector((state) => state.confirmationPopUp.message);
 
   if (!displayPopUp) return null;
 

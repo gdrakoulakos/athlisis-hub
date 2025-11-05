@@ -4,13 +4,17 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { hideResultPopUp } from "@/redux/features/popUps/resultPopUpSlice";
 
-export default function ResultPopUp({ message, action }) {
+export default function ResultPopUp({ result }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const displayPopUp = useSelector((state) => state.resultPopUp.displayPopUp);
+  const message = useSelector((state) => state.resultPopUp.message);
+
 
   const handleOk = () => {
-    if (action === "addBooking") {
+    if (result === "failedBooking") {
+      dispatch(hideResultPopUp());
+    } else if (result === "successBooking") {
       router.push("/");
     }
     dispatch(hideResultPopUp());

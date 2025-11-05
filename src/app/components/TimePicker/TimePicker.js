@@ -80,8 +80,6 @@ export default function TimePicker({ handleChange }) {
 
   const totalHours = selectedTime.length > 1 ? selectedTime.length - 1 : 0;
 
-  console.log("selected", selectedTime);
-
   return (
     <div className={styles.timePickerContainerAll}>
       <div className={styles.timePickerMoringContainer}>

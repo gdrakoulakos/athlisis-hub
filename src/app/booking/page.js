@@ -18,6 +18,7 @@ import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 import TimePicker from "../components/TimePicker/TimePicker";
 
 export default function Booking() {
+  const [bookingResult, setBookingResult] = useState(null);
   const dispatch = useDispatch();
   const {
     register,
@@ -51,7 +52,6 @@ export default function Booking() {
     status: "Pending",
   });
 
-  console.log("bookingData", bookingData);
 
   const bookingTypeOptions = ["Friendly", "Tournament", "Party", "Other"];
 
@@ -94,10 +94,12 @@ export default function Booking() {
         body: JSON.stringify(newBooking),
       });
       if (res.ok) {
-        dispatch(displayResultPopUp());
+        dispatch(displayResultPopUp("Booking added successfully"));
+        setBookingResult("successBooking");
       }
     } catch (error) {
       console.error("Error adding booking:", error);
+      setBookingResult("failedBooking");
       dispatch(hideLoadingSpinner());
     } finally {
       dispatch(hideLoadingSpinner());
@@ -105,7 +107,11 @@ export default function Booking() {
   };
 
   const onSubmit = () => {
-    dispatch(displayConfirmationPopUp());
+    if (bookingData.duration === 0) {
+      dispatch(displayResultPopUp("Please select a time range"));
+      return;
+    }
+    dispatch(displayConfirmationPopUp("Please confirm your booking"));
   };
 
   return (
@@ -250,13 +256,9 @@ export default function Booking() {
             <ConfirmationPopUp
               bookingData={bookingData}
               addBooking={addBooking}
-              message={"Please confirm your booking"}
               action={bookingData.action}
             />
-            <ResultPopUp
-              message={"Booking added successfully"}
-              action={bookingData.action}
-            />
+            <ResultPopUp result={bookingResult} />
           </form>
         </motion.div>
       )}

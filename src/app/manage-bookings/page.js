@@ -23,8 +23,6 @@ import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 export default function ManageBookings() {
   const dispatch = useDispatch();
-  const [confirmationMessage, setConfirmationMessage] = useState("");
-  const [resultMessage, setResultMessage] = useState("");
   const [bookingDataToDelete, setBookingDataToDelete] = useState({
     action: "deleteBooking",
   });
@@ -52,9 +50,8 @@ export default function ManageBookings() {
         return;
       }
       await refetch();
-      setResultMessage("Booking has been deleted successfully");
       dispatch(removeBooking(id));
-      dispatch(displayResultPopUp());
+      dispatch(displayResultPopUp("Booking has been deleted successfully"));
     } catch (error) {
       console.error("Error:", error);
       dispatch(hideLoadingSpinner());
@@ -81,8 +78,7 @@ export default function ManageBookings() {
 
       await refetch();
       dispatch(acknowledgeBooking({ id }));
-      setResultMessage("Booking has been acknowledged successfully");
-      dispatch(displayResultPopUp());
+      dispatch(displayResultPopUp("Booking has been acknowledged"));
     } catch (error) {
       console.error("Error:", error);
       dispatch(hideLoadingSpinner());
@@ -93,8 +89,7 @@ export default function ManageBookings() {
 
   const handleClickDelete = (booking) => {
     setBookingDataToDelete({ booking, action: "deleteBooking" });
-    setConfirmationMessage("Are you sure you want to delete this booking?");
-    dispatch(displayConfirmationPopUp());
+    dispatch(displayConfirmationPopUp("Are you sure you want to delete this booking?"));
   };
 
   return (
@@ -184,12 +179,11 @@ export default function ManageBookings() {
         </motion.div>
       ))}
       <ConfirmationPopUp
-        message={confirmationMessage}
         bookingData={bookingDataToDelete.booking}
         action={bookingDataToDelete.action}
         handleDeleteBooking={handleDeleteBooking}
       />
-      <ResultPopUp message={resultMessage} />
+      <ResultPopUp />
     </div>
   );
 }
