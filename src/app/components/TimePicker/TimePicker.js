@@ -84,7 +84,7 @@ export default function TimePicker({ handleChange }) {
     <div className={styles.timePickerContainerAll}>
       <div className={styles.timePickerMoringContainer}>
         <h3>Select the time range:</h3>
-        <div class={styles.timePickerWrapper}>
+        <div className={styles.timePickerWrapper}>
           <div className={styles.timePickerOptions}>
             {timeOptions.map((option) => (
               <div

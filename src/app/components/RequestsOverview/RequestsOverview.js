@@ -2,9 +2,15 @@ import styles from "./RequestsOverview.module.css";
 import ImageBookingType from "../ImageBookingType/ImageBookingType";
 import { formatDate } from "@/utils/date";
 import { sortByDate } from "@/utils/sort";
+import { useRouter } from "next/navigation";
 
 export default function RequestsOverview({ title, status, bookings }) {
   const sortedBookings = sortByDate(bookings);
+  const router = useRouter();
+
+  const handleMoreClick = (bookingId) => {
+    router.push(`/manage-bookings?bookingId=${bookingId}`);
+  };
 
   return (
     <>
@@ -40,7 +46,10 @@ export default function RequestsOverview({ title, status, bookings }) {
                     <div className={styles.requestsOverviewItemType}>
                       {booking.type}
                     </div>
-                    <button className={styles.requestsOverviewMore}>
+                    <button
+                      className={styles.requestsOverviewMore}
+                      onClick={() => handleMoreClick(booking.id)}
+                    >
                       More ...
                     </button>
                   </div>

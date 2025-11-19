@@ -16,12 +16,16 @@ import {
 import { useGetBookingsQuery } from "@/redux/api/bookingApi";
 import { formatDate, formatDateAndTime } from "@/utils/date";
 import { sortByStatusAndDate } from "@/utils/sort";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import ConfirmationPopUp from "../components/popUps/ConfirmationPopUp/ConfirmationPopUp";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
+import { useSearchParams } from "next/navigation";
 
 export default function ManageBookings() {
+  const searchParams = useSearchParams();
+
+  const bookingId = searchParams.get("bookingId");
   const dispatch = useDispatch();
   const [bookingDataToDelete, setBookingDataToDelete] = useState({
     action: "deleteBooking",
@@ -33,6 +37,20 @@ export default function ManageBookings() {
   const showLoadingSpinner = useSelector(
     (state) => state.loadingSpinner.loadingSpinner
   );
+
+  useEffect(() => {
+    if (bookingId) {
+      const element = document.getElementById(`booking.id-${bookingId}`);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+          });
+        }, 500);
+      }
+    }
+  }, [bookingId]);
 
   const handleDeleteBooking = async (id) => {
     try {
@@ -89,7 +107,9 @@ export default function ManageBookings() {
 
   const handleClickDelete = (booking) => {
     setBookingDataToDelete({ booking, action: "deleteBooking" });
-    dispatch(displayConfirmationPopUp("Are you sure you want to delete this booking?"));
+    dispatch(
+      displayConfirmationPopUp("Are you sure you want to delete this booking?")
+    );
   };
 
   return (
@@ -99,6 +119,7 @@ export default function ManageBookings() {
       {sortedData?.map((booking) => (
         <motion.div
           key={booking.id}
+          id={`booking.id-${booking.id}`}
           className={`${styles.cardsContainer} ${
             booking.status === "Acknowledged"
               ? styles.acknowledged
