@@ -62,6 +62,7 @@ export default function Header() {
           >
             {headerOptions.map((option, index) => (
               <Link
+                key={index}
                 href={option.path}
                 className={styles.option}
                 onClick={() => dispatch(toggleHeaderMenu())}
