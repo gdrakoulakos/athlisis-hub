@@ -1,3 +1,4 @@
+"use client";
 import styles from "./ResultPopUp.module.css";
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";

@@ -1,3 +1,4 @@
+"use client";
 import styles from "./RequestsOverview.module.css";
 import ImageBookingType from "../ImageBookingType/ImageBookingType";
 import { formatDate } from "@/utils/date";

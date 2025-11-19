@@ -1,3 +1,4 @@
+"use client";
 import styles from "./LoadingSpinner.module.css";
 import { motion } from "motion/react";
 

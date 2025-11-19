@@ -1,3 +1,4 @@
+"use client";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchBookings = createAsyncThunk(
