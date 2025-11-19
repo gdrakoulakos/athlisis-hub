@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/app/providers";
+import { Suspense } from "react";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 
@@ -25,7 +26,7 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Providers>
           <Header />
-          {children}
+          <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
           <Footer />
         </Providers>
       </body>
