@@ -32,7 +32,11 @@ export default function RequestsOverview({ title, status, bookings }) {
             )}
             <section className={styles.requestsOverviewList}>
               {sortedBookings.map((booking, index) => (
-                <article key={index} className={styles.requestsOverviewItem}>
+                <article
+                  key={index}
+                  className={styles.requestsOverviewItem}
+                  onClick={() => handleMoreClick(booking.id)}
+                >
                   <ImageBookingType bookingType={booking.type} size={60} />
                   <div className={styles.requestsOverviewItemInfo}>
                     <div className={styles.requestsOverviewItemTopRow}>
@@ -46,10 +50,7 @@ export default function RequestsOverview({ title, status, bookings }) {
                     <div className={styles.requestsOverviewItemType}>
                       {booking.type}
                     </div>
-                    <button
-                      className={styles.requestsOverviewMore}
-                      onClick={() => handleMoreClick(booking.id)}
-                    >
+                    <button className={styles.requestsOverviewMore}>
                       More ...
                     </button>
                   </div>
