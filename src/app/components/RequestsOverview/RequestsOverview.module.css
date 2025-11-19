@@ -61,13 +61,11 @@
 
 .requestsOverviewItem {
   width: 90%;
-  height: 100px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 10px;
   border-bottom: 1px solid #fd705c;
-  padding: 10px;
+  padding: 5px;
   justify-content: center;
 }
 
