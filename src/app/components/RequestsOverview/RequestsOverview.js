@@ -22,7 +22,7 @@ export default function RequestsOverview({ title, status, bookings }) {
             className={styles.requestsOverviewListWrapper}
             style={
               title === "New Bookings"
-                ? { maxHeight: "120px" }
+                ? { height: "120px" }
                 : { height: "240px" }
             }
           >
