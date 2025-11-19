@@ -1,4 +1,6 @@
 "use client";
+export const dynamic = "force-dynamic";
+
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./page.module.css";
 import ImageBookingType from "../components/ImageBookingType/ImageBookingType";
