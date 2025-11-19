@@ -1,4 +1,6 @@
 "use client";
+export const dynamic = "force-dynamic";
+
 import styles from "./page.module.css";
 import RequestsOverview from "./components/RequestsOverview/RequestsOverview";
 import ButtonReserveCourt from "./components/ButtonReserveCourt/ButtonReserveCourt";
