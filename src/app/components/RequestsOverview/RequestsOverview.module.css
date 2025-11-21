@@ -1,48 +1,23 @@
-.requestsOverviewBlock {
+.section {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.requestsOverviewListWrapper {
+.title {
+  margin-bottom: 20px;
+  text-shadow: #ffe9e6 0px 0px 10px;
+}
+
+.listWrapper {
   position: relative;
   width: 100%;
   border-radius: 20px;
   background: #ffdfdb;
 }
 
-.requestsOverviewList {
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 35px;
-  box-sizing: border-box;
-  z-index: 0;
-  background: transparent;
-}
-
-.requestsOverviewCounter {
-  display: flex;
-  font-weight: 600;
-  align-items: center;
-  justify-content: center;
-  width: 10px;
-  height: 10px;
-  padding: 10px;
-  border-radius: 50%;
-  background-color: #fd705c;
-  color: white;
-  position: absolute;
-  top: -10px;
-  left: -10px;
-  box-shadow: 0px 0px 5px 0px #fd705c;
-}
-
-.requestsOverviewListWrapper::after {
+.listWrapper::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -59,7 +34,37 @@
   z-index: 1;
 }
 
-.requestsOverviewItem {
+.counter {
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 10px;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #fd705c;
+  color: white;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  box-shadow: 0px 0px 5px 0px #fd705c;
+}
+
+.list {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 35px;
+  box-sizing: border-box;
+  z-index: 0;
+  background: transparent;
+}
+
+.bookingContainer {
   width: 90%;
   display: flex;
   flex-direction: row;
@@ -69,7 +74,11 @@
   justify-content: center;
 }
 
-.requestsOverviewItemTopRow {
+.bookingInfo {
+  width: 100%;
+}
+
+.bookingInfoTopRow {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -77,28 +86,24 @@
   font-size: 15px;
 }
 
-.requestsOverviewItemTopRow time {
+.bookingInfoTopRow time {
   width: 45%;
 }
 
-.requestsOverviewItemName {
+.requestorName {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   width: 50%;
 }
 
-.requestsOverviewItemInfo {
-  width: 100%;
-}
-
-.requestsOverviewItemType {
+.bookingType {
   font-size: 16px;
   font-weight: 600;
   color: #fd705c;
 }
 
-.requestsOverviewMore {
+.more {
   font-size: 14px;
   color: #fd705c;
   background-color: transparent;
@@ -106,9 +111,4 @@
   margin: 0;
   display: contents;
   font-weight: 100;
-}
-
-.requestsOverviewTitle {
-  margin-bottom: 20px;
-  text-shadow: #ffe9e6 0px 0px 10px;
 }

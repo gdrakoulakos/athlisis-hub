@@ -16,10 +16,10 @@ export default function RequestsOverview({ title, status, bookings }) {
   return (
     <>
       {bookings && (
-        <div className={styles.requestsOverviewBlock}>
-          <h2 className={styles.requestsOverviewTitle}>{title}</h2>
+        <div className={styles.section}>
+          <h2 className={styles.title}>{title}</h2>
           <div
-            className={styles.requestsOverviewListWrapper}
+            className={styles.listWrapper}
             style={
               title === "New Bookings"
                 ? { height: "110px" }
@@ -27,31 +27,31 @@ export default function RequestsOverview({ title, status, bookings }) {
             }
           >
             {status === "Pending" && (
-              <div className={styles.requestsOverviewCounter}>
+              <div className={styles.counter}>
                 {bookings.length}
               </div>
             )}
-            <section className={styles.requestsOverviewList}>
+            <section className={styles.list}>
               {sortedBookings.map((booking, index) => (
                 <article
                   key={index}
-                  className={styles.requestsOverviewItem}
+                  className={styles.bookingContainer}
                   onClick={() => handleMoreClick(booking.id)}
                 >
                   <ImageBookingType bookingType={booking.type} size={60} />
-                  <div className={styles.requestsOverviewItemInfo}>
-                    <div className={styles.requestsOverviewItemTopRow}>
-                      <time className={styles.requestsOverviewItemDate}>
+                  <div className={styles.bookingInfo}>
+                    <div className={styles.bookingInfoTopRow}>
+                      <time>
                         {formatDate(booking.date)}
                       </time>
-                      <div className={styles.requestsOverviewItemName}>
+                      <div className={styles.requestorName}>
                         {booking.name}
                       </div>
                     </div>
-                    <div className={styles.requestsOverviewItemType}>
+                    <div className={styles.bookingType}>
                       {booking.type}
                     </div>
-                    <button className={styles.requestsOverviewMore}>
+                    <button className={styles.more}>
                       More...
                     </button>
                   </div>

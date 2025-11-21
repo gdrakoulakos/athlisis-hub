@@ -6,9 +6,9 @@ import Footer from "./components/Footer/Footer";
 import { DM_Sans } from "next/font/google";
 
 const fonts = DM_Sans({
-  weight: ["300"], // you can adjust weights
-  subsets: ["latin"], // specify subsets
-  display: "swap", // optional, improves font loading
+  weight: ["300"],
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export default function RootLayout({ children }) {
