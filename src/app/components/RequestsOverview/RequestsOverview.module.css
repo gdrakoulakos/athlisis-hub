@@ -105,8 +105,10 @@
   border: none;
   margin: 0;
   display: contents;
+  font-weight: 100;
 }
 
 .requestsOverviewTitle {
   margin-bottom: 20px;
+  text-shadow: #ffe9e6 0px 0px 10px;
 }

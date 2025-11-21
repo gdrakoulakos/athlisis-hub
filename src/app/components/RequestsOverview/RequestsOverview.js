@@ -52,7 +52,7 @@ export default function RequestsOverview({ title, status, bookings }) {
                       {booking.type}
                     </div>
                     <button className={styles.requestsOverviewMore}>
-                      More ...
+                      More...
                     </button>
                   </div>
                 </article>
