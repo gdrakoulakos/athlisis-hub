@@ -22,8 +22,8 @@ export default function RequestsOverview({ title, status, bookings }) {
             className={styles.requestsOverviewListWrapper}
             style={
               title === "New Bookings"
-                ? { height: "120px" }
-                : { height: "240px" }
+                ? { height: "110px" }
+                : { height: "210px" }
             }
           >
             {status === "Pending" && (
